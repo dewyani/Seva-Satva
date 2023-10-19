@@ -129,19 +129,20 @@ const [input, setInput] = React.useState({
                  result="pass"
                 />
 
-                <Dashboard 
+                {/* <Dashboard 
                 uid={2021300043} 
                 sem={2} 
                 course="Cooking"
                  grade="FF" 
                  result="fail"
-                />
+                /> */}
 
                </>
 
       } 
       />
-      <Route  path="/fillChoice" element={<FillChoice/>} />
+      <Route  path="/fillChoice" element={<FillChoice 
+                                             courses={courses}/>} />
       <Route  path="/grievance" element={<Grievance/>} /> 
 
 

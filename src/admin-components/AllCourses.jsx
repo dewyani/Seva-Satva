@@ -18,7 +18,7 @@ export default function AllCourses(props) {
           <div className="allcourse--div" key={course.id}>
             <img src={cookingImg} alt="cooking image" />
             <div className="allcourse--innerdiv">
-              <hr />
+              <hr/>
               <p className="bold">{course.coursename}</p>
               <p>Intake capacity: {course.intake}</p>
               <p>{course.instructor}</p>

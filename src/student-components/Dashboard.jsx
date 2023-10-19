@@ -3,10 +3,12 @@ import NavBar from './NavBar'
 
 export default function Dashborad(props)
 {
+
     return (
 
      <>
          <NavBar/> 
+        
         <main className='dashboard--main'>
         <div className='dashboard--first-div'>
             <h4>Name: Raj Sharma</h4>
