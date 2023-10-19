@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from './NavBar'
 
 export default function FillChoice()
 {
@@ -27,6 +28,10 @@ export default function FillChoice()
 
 
     return (
+        
+        <>
+
+        <NavBar/>
         
         <div className='fillchoice--outerdiv'>
             <aside > 
@@ -69,5 +74,7 @@ export default function FillChoice()
             </section>
              
         </div>
+
+        </>
     )
 }

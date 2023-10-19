@@ -12,7 +12,7 @@ export default function AdminNavBar()
                 <p>Lifting Abilities, Enlarging Perspectives</p>
             </div>
             <ul className="navbar--ul">
-                <li><Link to="/">All Courses</Link></li>
+                <li><Link to="/allcourses">All Courses</Link></li>
                 <li><Link to="/editcourse">Edit Course</Link></li>
                 <li><Link to="/notalloted">Not Alloted</Link></li>
                 <li><Link to="/admingrievance">Grievance</Link></li>

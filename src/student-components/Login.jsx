@@ -3,7 +3,7 @@ import Register from './Register'
 import RegisterInstructor from './RegisterInstructor';
 import RegisterStudents from './RegisterStudent';
 import loginImage from '../images/login.png';
-import AllCourses from './AllCourses';
+import AllCourses from '../admin-components/AllCourses';
 
 
 

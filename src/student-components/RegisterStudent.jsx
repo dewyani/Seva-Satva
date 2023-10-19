@@ -2,9 +2,13 @@ import React from 'react'
 import registerImage from '../images/register.png';
 import Login from './Login';
 import profileLogo from '../images/user.png'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function RegisterStudent()
 {
+
+    
     const [studentData , setStudentData] = React.useState({
 
         name: "",
@@ -19,7 +23,8 @@ export default function RegisterStudent()
     // console.log(studentData)
     function handleChange(event)
     {
-        console.log("rendered once")
+    
+    console.log("rendered once")
     const {type, value, checked, name}=event.target
 
     setStudentData(prevstudentData=>{
@@ -29,9 +34,12 @@ export default function RegisterStudent()
     }
     })
     }
+
     
     function handleSubmit(event)
     {
+  
+    
     event.preventDefault();
     // submittoApi(studentData)
     
@@ -115,7 +123,7 @@ export default function RegisterStudent()
     </div>
 
 
-    <button className='nodecor submit'>SUBMIT</button>
+    <button className='nodecor submit' ><a href="/allcoursesstudent">SUBMIT</a></button>
 
     <p>Already registered? <a href="/" className='nodecor'>Login here</a></p>
     </div>

@@ -6,7 +6,7 @@ import Register from './student-components/Register'
 import RegisterInstructor from './student-components/RegisterInstructor'
 import RegisterStudent from './student-components/RegisterStudent'
 import Dashboard from './student-components/Dashboard'
-import AllCourses from './student-components/AllCourses'
+import AllCourses from './admin-components/AllCourses'
 import FillChoice from './student-components/FillChoice'
 import Grievance from './student-components/Grievance'
 import {Routes, Route, Link} from "react-router-dom"
@@ -22,27 +22,28 @@ import Course from './admin-components/Course'
 
 import {nanoid}  from "nanoid"
 
-// import Model from 'react-modal' 
+
 import cookingImg from "./images/cooking.png"
+import AllCoursesStudent from './student-components/AllCoursesStudent'
 
 
 
 function App() {
         
 
-const [input, setInput] = useState({
+const [input, setInput] = React.useState({
     coursename: "",
     intake: "",
     instructor: "",
     image: null
 })
-        const [courses, setCourses] = useState([])
-        const [editToggle, setEditToggle] = useState(null)
+        const [courses, setCourses] = React.useState([])
+        const [editToggle, setEditToggle] = React.useState(null)
     
 
         // console.log(courses)
-        console.log(input.image)
-        console.log(input)
+        // console.log(input.image)
+        // console.log(input)
         const editHandler = (id, coursename, intake, instructor, image) => {
             setEditToggle(id)
             setInput((prevInput)=> (
@@ -94,6 +95,7 @@ const [input, setInput] = useState({
             setCourses(newcourses)
         }
 
+        // backend
         useEffect(() => {
             const data = JSON.parse(localStorage.getItem("courses"));
             if (data) {
@@ -112,13 +114,11 @@ const [input, setInput] = useState({
     <div>
 
        <div>
-      <NavBar />
       <Routes>
       <Route path="/" element={< Login/>}/>
       <Route path="/register" element={<Register />}/>
       <Route path="/registerinstructor" element={<RegisterInstructor />}/>
       <Route path="/registerstudent" element={<RegisterStudent />}/>
-      <Route  path="/allcourses" element={<AllCourses/>} /> 
       <Route  path="/dashboard" 
       element={ <>
                 <Dashboard name="Raj Sharma" 
@@ -143,19 +143,15 @@ const [input, setInput] = useState({
       />
       <Route  path="/fillChoice" element={<FillChoice/>} />
       <Route  path="/grievance" element={<Grievance/>} /> 
-      </Routes>
-      </div> 
 
-   {/*
-     <div>
-        
-   < AdminNavBar />
-        <Routes>
 
-        <Route  path="/" element={<AllCourses 
+        <Route  path="/allcourses" element={<AllCourses 
                                       courses={courses}
                                       />}
                                        /> 
+        <Route path="/allcoursesstudent" element={<AllCoursesStudent
+                                            courses={courses}
+                                            />}/>
 
          <Route  path="/editcourse" element={<EditCourse
                                              
@@ -176,8 +172,8 @@ const [input, setInput] = useState({
          <Route  path="/admingrievance" element={<AdminGrievance/>} />          
 
         </Routes>
-      </div>
-         */}
+      </div> 
+         
 
     </div>
      

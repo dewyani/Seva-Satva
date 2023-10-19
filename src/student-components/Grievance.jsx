@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from './NavBar'
 
 export default function Grievance()
 {
@@ -27,6 +28,9 @@ export default function Grievance()
 
 
     return (
+
+        <>
+        <NavBar/>
         <form onSubmit={handleSubmit} className='grievance--form'>
             <h4>Grievance form</h4>
             <div className='grievance--div'>
@@ -40,5 +44,6 @@ export default function Grievance()
 
                
         </form>
+     </>
     )
 }

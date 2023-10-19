@@ -3,8 +3,11 @@ import registerImage from '../images/register.png';
 import Login from './Login';
 import profileLogo from '../images/user.png'
 
+import { useNavigate } from 'react-router-dom';
+
 export default function Register()
 {
+    const navigate = useNavigate();
     const [adminData , setAdminData] = React.useState({
 
         name: "",
@@ -31,6 +34,10 @@ export default function Register()
     
     function handleSubmit(event)
     {
+
+   
+    //  navigate('/allcourses')
+    
     event.preventDefault();
     // submittoApi(adminData)
     
@@ -86,7 +93,8 @@ export default function Register()
     </div>
 
 
-    <button className='nodecor submit'>SUBMIT</button>
+      
+    <button className='nodecor submit'> <a href= "/allcourses">SUBMIT</a></button>
 
     <p>Already registered? <a href="/" className='nodecor'>Login here</a></p>
     </div>

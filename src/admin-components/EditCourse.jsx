@@ -3,7 +3,8 @@ import CreateCourse from './CreateCourse'
 import {nanoid} from 'nanoid'
 import Course from './Course'
 import cookingImg from "../images/cooking.png"
-import AllCourses from '../student-components/AllCourses'
+import AllCourses from './AllCourses'
+import AdminNavBar from './AdminNavbar'
 
 
 export default function EditCourse({courses, editToggle, input , saveHandler, setInput ,editHandler,deleteHandler}){
@@ -13,18 +14,19 @@ export default function EditCourse({courses, editToggle, input , saveHandler, se
 
 
 return (
+   <>
+   < AdminNavBar />
     <main className="allcourse--main">
         {
             courses.map((course) => (
                 editToggle === course.id ?
                 <CreateCourse 
-                        input ={input }
-                        setInput  = {setInput } 
-                        saveHandler = {saveHandler}
-                        />
+                input ={input }
+                setInput  = {setInput } 
+                saveHandler = {saveHandler}
+                />
                 :
-
-               
+                
                 <Course
                     key={course.id}
                     id={course.id}
@@ -52,6 +54,7 @@ return (
       
         
       </main>
+      </>
   )
 }
 
