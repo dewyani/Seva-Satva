@@ -13,6 +13,8 @@ export default function Drag(props)
          }),
     }))
 
+    // console.log("coursename "+props.name + " id " +props.id)
+
     return(
         <li key={props.id} className="fillchoice--li" ref={drag} style={{border: isDragging? "2px solid red": "0px"}}>
         <img src={cookingImg} alt="course-img" />

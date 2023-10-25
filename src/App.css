@@ -563,7 +563,7 @@ position: absolute;
 
   border: 1px solid black;
   width: 415px;
-  height: 355px;
+  height: 407px;
   margin: 9px;
   padding: 1.6rem 5.2rem;
   background-color:rgb(255, 252, 248);
@@ -629,9 +629,10 @@ position: absolute;
 }
 .preferences
 {
-  height: 138px;
+  height: 190px;
 
 }
+
 
 /* -----------Students CourseNotAlloted---------- */
 

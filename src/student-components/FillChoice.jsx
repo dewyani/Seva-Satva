@@ -15,6 +15,8 @@ export default function FillChoice(props) {
     preference: [],
   });
 
+  const [board, setBoard] =React.useState([{id: 'gZ80VEHx31hrOqUHue2mr', coursename: 'Running', instructor: 'Ross'}]);
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "li",
     drop: (item) => addImageToDiv(item.id),
@@ -23,29 +25,57 @@ export default function FillChoice(props) {
     }),
   }));
 
+  
+  //to check courses
+  // courses.map((course)=>{
+  //   console.log("course: \n courseid "+ course.id + "coursename: "+course.coursename )
+  // })
+
   const addImageToDiv = (id) => {
-    const list = courses.filter((course)=> id === course.id)
-    // setPreferenceData((preferenceData.preference)=>[...preferenceData.preference, list[0]])
+    console.log("id "+id)
+
+     var data = courses.filter((course)=> String(id) === String(course.id))
+
+    // const data = courses.map(course=>
+
+    //   {
+
+    //     if(id===course.id)
+    //     {
+    //       return course
+          
+    //     }
+    //   }
+    //      )
+
+    console.log(data)
+    
+  //  console.log("list" +list[0])
+    setBoard((board)=>[...board,data[0]])
+
   };
 
+  console.log(board)
+
   // console.log(preferenceData);
-  function handleChange(event) {
+  function handleChange(event, board) {
     const { value, name } = event.target;
 
     setPreferenceData((prevpreferenceData) => {
-      console.log(name)
-      console.log(value)
       return {
         ...prevpreferenceData,
         [name]: value,
+        preference: board
       };
     });
   }
-
+  
+  console.log(preferenceData)
+  
   //get the array from backend
   React.useEffect(function () {
     // console.log("use effect");
-  });
+  },[]);
 
   return (
     <>
@@ -55,10 +85,6 @@ export default function FillChoice(props) {
           <aside>
             <ul className="fillchoice--ul">
               {courses.map((course) => (
-                // <li key={course.id} className="fillchoice--li">
-                //   <img src={cookingImg} alt="course-img" />
-                //   <span>{course.coursename}</span>
-                // </li>
                 <Drag  id={course.id} name={course.coursename} />
               ))}
             </ul>
@@ -86,23 +112,33 @@ export default function FillChoice(props) {
                   className="fillchoice--input"
                 />
               </div>
-
-              <div className="fillchoice--input preferences" ref={drop}>
-                <label htmlFor="preferenceid" className="fillchoice--label">
+              
+              {/* <p className="fillchoice--label">Enter 3 preferences</p> */}
+              <div ref={drop} className="fillchoice--input preferences maindiv"  onChange={handleChange}>
+                {/* <label htmlFor="preferenceid" className="fillchoice--label">
                   Enter 3 preferences
-                </label>
+                </label>  */}
                 {/* <input
+                // ref={drop} 
                 type="text"
                 id="preferenceid"
                 name="preference"
                 onChange={handleChange}
                 value={preferenceData.preference}
                 className="fillchoice--input preferences"
-              /> */}
+              />  */}
 
-                {preferenceData.preference.map((element) => (
+                 {/* {board.map((element) => (
                   <Drag key={element.id} id={element.id} name={element.coursename} />
-                ))}
+                ))}  */}
+
+{board.map((element) => {
+  if (!element || !element.id) {
+    return console.log("no id")// or handle accordingly
+  }
+  return <Drag key={element.id} id={element.id} name={element.coursename} />;
+})} 
+
               </div>
             </div>
           </section>
@@ -111,3 +147,4 @@ export default function FillChoice(props) {
     </>
   );
 }
+
