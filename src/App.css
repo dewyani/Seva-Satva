@@ -227,7 +227,6 @@
    font-family: 'Inter', sans-serif;
    color:black;
    height: 90%;
-   display: block;
    margin:  50px auto;
    /* border: 2px solid blue; */
 
@@ -236,19 +235,19 @@
 .grievance--form h4{
 
   font-size: 24px;
-  margin-left: 22rem;
+  margin-left: 26rem;
   
 }
 
 .grievance--div{
-    width:485px;
-    height: 200px;
+    width:535px;
+    height: 397px;
     background-color: white;
     border: 1px solid black;
-    margin: 22px;
+    margin: 22px 44px;
     display: flex;
     flex-direction: column;
-    margin-left: 22rem;
+    margin-left: 26rem;
     padding: 4.2rem;
 
 }
