@@ -25,7 +25,7 @@ export default function FillChoice(props) {
 
   const addImageToDiv = (id) => {
     const list = courses.filter((course)=> id === course.id)
-    setPreferenceData((preferenceData.preference)=>[...preferenceData.preference, list[0]])
+    // setPreferenceData((preferenceData.preference)=>[...preferenceData.preference, list[0]])
   };
 
   // console.log(preferenceData);

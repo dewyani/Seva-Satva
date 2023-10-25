@@ -5,7 +5,7 @@ export default function NotAlloted() {
   const data = [
     { id: 1, name: "John", email: "sanjay@spit.ac.in", class: "SY Comps-A" },
     { id: 2, name: "Jane", email: "sanjay@spit.ac.in", class: "SY Comps-A" },
-    { id: 3, name: "Bob", email: "sanjay@spit.ac.in", class: "SY Comps-A" },
+    { id: 3, name: "Bob", email: "bob@spit.ac.in", class: "SY Comps-A" },
   ];
 
   return (
