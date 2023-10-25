@@ -3,35 +3,26 @@ import registerImage from "../images/register.png";
 import Login from "./Login";
 import profileLogo from "../images/user.png";
 import headerImage from "../images/header.png";
-
-import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 export default function Register() {
-  const navigate = useNavigate();
-  const [adminData, setAdminData] = React.useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  
+  // mandatory
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [role, setRole] = React.useState('Admin');
 
-  // console.log(adminData)
-  function handleChange(event) {
-    console.log("rendered once");
-    const { type, value, checked, name } = event.target;
 
-    setAdminData((prevadminData) => {
-      return {
-        ...prevadminData,
-        [name]: value,
-      };
-    });
-  }
-
-  function handleSubmit(event) {
-    //  navigate('/allcourses')
-
+  async function handleSubmit(event) {
     event.preventDefault();
-    // submittoApi(adminData)
+    await axios.post("http://localhost:4000/auth/register" , { username , email , password , role})
+    .then((response) => {
+      alert("successfully registered !!" , response)
+    })
+    .catch((error) => {
+      alert("Error While Registering " , error.message)
+    })
   }
 
   return (
@@ -53,18 +44,18 @@ export default function Register() {
           </div>
 
           <div className="register--div">
-            <div>
+          <div>
               <label htmlFor="nameid" className="block">
                 Name
               </label>
               <input
                 type="text"
-                name="name"
+                // name="username"
                 id="nameid"
                 placeholder="Name"
-                onChange={handleChange}
-                value={adminData.name}
-                className="login--form-input-design"
+                onChange={ev => setUsername(ev.target.value)}
+                value={username}
+                className="registerstudent--form-input-design"
               />
             </div>
 
@@ -74,12 +65,12 @@ export default function Register() {
               </label>
               <input
                 type="email"
-                name="email"
+                // name="email"
                 id="emailid"
                 placeholder="Email"
-                onChange={handleChange}
-                value={adminData.email}
-                className="register--form-input-design"
+                onChange= {ev => setEmail(ev.target.value)}
+                value={email}
+                className="registerstudent--form-input-design"
               />
             </div>
 
@@ -89,17 +80,17 @@ export default function Register() {
               </label>
               <input
                 type="password"
-                name="password"
+                // name="password"
                 id="passwordid"
                 placeholder="Password"
-                onChange={handleChange}
-                value={adminData.password}
-                className="register--form-input-design"
+                onChange={ev => setPassword(ev.target.value)}
+                value={password}
+                className="registerstudent--form-input-design"
               />
             </div>
 
             <button className="nodecor submit">
-              {" "}
+              {/* {" "} */}
               <a href="/allcourses">SUBMIT</a>
             </button>
 
