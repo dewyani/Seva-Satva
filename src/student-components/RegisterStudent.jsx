@@ -3,36 +3,33 @@ import registerImage from "../images/register.png";
 import Login from "./Login";
 import profileLogo from "../images/user.png";
 import headerImage from "../images/header.png";
+import axios from 'axios'
 
 
 export default function RegisterStudent() {
-  const [studentData, setStudentData] = React.useState({
-    name: "",
-    email: "",
-    branch: "comps",
-    uid: "",
-    password: "",
-  });
 
-  // console.log(studentData)
-  function handleChange(event) {
-    console.log("rendered once");
-    const { type, value, checked, name } = event.target;
+  // mandatory
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [role, setRole] = React.useState('Student');
 
-    setStudentData((prevstudentData) => {
-      return {
-        ...prevstudentData,
-        [name]: value,
-      };
-    });
-  }
+  // choice
+  const [branch, setBranch] = React.useState('Comps');
+  const [uid, setUID] = React.useState('1');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    // submittoApi(studentData)
+    await axios.post("http://localhost:4000/auth/register" , { username , email , branch , uid , password , role})
+    .then((response) => {
+      alert("successfully registered !!" , response)
+    })
+    .catch((error) => {
+      alert("Error While Registering " , error.message)
+    })
   }
 
-  return (
+  return ( 
     <>
       <header className="login--header">
         <img src={headerImage} alt="header" />
@@ -60,11 +57,11 @@ export default function RegisterStudent() {
               </label>
               <input
                 type="text"
-                name="name"
+                // name="username"
                 id="nameid"
                 placeholder="Name"
-                onChange={handleChange}
-                value={studentData.name}
+                onChange={ev => setUsername(ev.target.value)}
+                value={username}
                 className="registerstudent--form-input-design"
               />
             </div>
@@ -75,11 +72,11 @@ export default function RegisterStudent() {
               </label>
               <input
                 type="email"
-                name="email"
+                // name="email"
                 id="emailid"
                 placeholder="Email"
-                onChange={handleChange}
-                value={studentData.email}
+                onChange= {ev => setEmail(ev.target.value)}
+                value={email}
                 className="registerstudent--form-input-design"
               />
             </div>
@@ -90,11 +87,11 @@ export default function RegisterStudent() {
               </label>
               <input
                 type="number"
-                name="uid"
+                // name="uid"
                 id="uidid"
                 placeholder="UID"
-                onChange={handleChange}
-                value={studentData.uid}
+                onChange={ev => setUID(ev.target.value)}
+                value={uid}
                 className="registerstudent--form-input-design"
               />
             </div>
@@ -106,8 +103,8 @@ export default function RegisterStudent() {
               <select
                 name="branch"
                 id="branchid"
-                onChange={handleChange}
-                value={studentData.branch}
+                onChange={ev => setBranch(ev.target.value)}
+                value={branch}
               >
                 <option value="comps">Comps</option>
                 <option value="it">IT</option>
@@ -124,11 +121,11 @@ export default function RegisterStudent() {
               </label>
               <input
                 type="password"
-                name="password"
+                // name="password"
                 id="passwordid"
                 placeholder="Password"
-                onChange={handleChange}
-                value={studentData.password}
+                onChange={ev => setPassword(ev.target.value)}
+                value={password}
                 className="registerstudent--form-input-design"
               />
             </div>
