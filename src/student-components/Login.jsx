@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Login(props) {
     const navigate = useNavigate()
+    const [redirect , setRedirect] = React.useState(false)
     const [username , setUsername] = React.useState("")
     const [formData, setFormData] = React.useState({
 
@@ -41,12 +42,15 @@ export default function Login(props) {
         await axios.post("http://localhost:4000/auth/login", { username, password, role } ,{withCredentials : true })
             .then((response) => {
                 alert("User LoggedIn Successfully")
+                setRedirect(true)
             })
             .catch((error) => {
                 alert("Error While Logginin ", error.message)
             })
 
-        navigate("/allcourses")
+            if(redirect) {
+                navigate("/allcourses")
+            }
     }
 
 

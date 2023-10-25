@@ -1,78 +1,43 @@
-import React from "react"
+import React, { useEffect } from "react"
 import AdminNavBar from "./AdminNavbar"
 import Grievance from "../student-components/Grievance"
+import { useState } from "react"
+import axios from "axios"
+import { DateTime } from 'luxon';
 
-export default function AdminGrievance()
-{
 
-    //take an array of object from backend
+export default function AdminGrievance() {
 
-    // grievances.map((grievance)=>
-    // (
-    //     <div key={grievance.id}>
-    //     id and grievance from fronted will be submited
-           
-    // ))
+    const [allGrievance, setAllGrievance] = useState([])
+    useEffect((() => {
 
-    return(
-       
+        axios.get("http://localhost:4000/grievance/allGrievance")
+            .then((response) => {
+                setAllGrievance(response.data.grievanceDocs)
+                console.log(allGrievance)
+            })
+            .catch((error) => {
+                alert("error while fetching all grievances ")
+            })
+    }), [])
+
+    return (
+
         <>
-        <AdminNavBar/>
-        <div className="admingrievance--main-div">
-            <div className="admingrievance--sub-div" >
-                <div className="admingrievance--p-div">
-                <p>Name: Apulki Dubey</p>
-                <p>Class: Comps A</p>
-                <p>Sem: 3</p>
-                </div>     
-            </div>
-
-            <div className="admingrievance--sub-div">
-                <div className="admingrievance--p-div">
-                <p>Name: Apulki Dubey</p>
-                <p>Class: Comps A</p>
-                <p>Sem: 3</p>
-                </div>     
-            </div>
-
-
-            <div className="admingrievance--sub-div">
-                <div className="admingrievance--p-div">
-                <p>Name: Apulki Dubey</p>
-                <p>Class: Comps A</p>
-                <p>Sem: 3</p>
-                </div>     
-            </div>
-
-
-            <div className="admingrievance--sub-div">
-                <div className="admingrievance--p-div">
-                <p>Name: Apulki Dubey</p>
-                <p>Class: Comps A</p>
-                <p>Sem: 3</p>
-                </div>     
-            </div>
-
-
-            <div className="admingrievance--sub-div">
-                <div className="admingrievance--p-div">
-                <p>Name: Apulki Dubey</p>
-                <p>Class: Comps A</p>
-                <p>Sem: 3</p>
-                </div>     
-            </div>
-
-
-            <div className="admingrievance--sub-div">
-                <div className="admingrievance--p-div">
-                <p>Name: Apulki Dubey</p>
-                <p>Class: Comps A</p>
-                <p>Sem: 3</p>
-                </div>     
-            </div>
-
-
-        </div>
+            <AdminNavBar />
+            {allGrievance.map((each , i) => (
+                <div className="admingrievance--main-div">
+                    <div className="admingrievance--sub-div" >
+                        <div className="admingrievance--p-div">
+                            <div>
+                                <p>{each.query}</p>
+                                <h5><em>Posted By : {each.postedBy.username}</em></h5>
+                                <h5><em>Posted At : {DateTime.fromISO(each.createdAt).toLocaleString(DateTime.DATETIME_MED)}</em></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </>
     )
 }
