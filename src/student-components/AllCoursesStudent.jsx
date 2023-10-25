@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import cookingImg from "../images/cooking.png";
 import addImg from "../images/add.png";
 import updateImg from "../images/update.png";
@@ -9,6 +9,7 @@ import NavBar from "../student-components/NavBar";
 export default function AllCoursesStudent(props) {
   const { courses } = props;
 
+   
   return (
     <>
       <NavBar/>

@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from './NavBar'
 
 export default function Dashborad(props)
 {
 
+    
+        //backend
+        //assuming data comes in the form of array of object
+    
+
+    // details.map((detail)=(
+    //     add all the data
+    // )
+    // )
+
     return (
 
-     <>
+        <>
          <NavBar/> 
         
         <main className='dashboard--main'>

@@ -7,7 +7,7 @@ import deleteImg from "../images/delete.png";
 import AdminNavBar from "./AdminNavbar";
 
 export default function AllCourses(props) {
-  const { courses } = props;
+  const { courses,image } = props;
 
   return (
     <>
@@ -15,8 +15,9 @@ export default function AllCourses(props) {
       <main className="allcourse--main">
         {
         courses.map((course) => (
-          <div className="allcourse--div" key={course.id}>
-            <img src={cookingImg} alt="cooking image" />
+          <div className="allcourse--div" key={course.id} onClick={()=>props.handleClick(course.id)}>
+            {/* <img src={cookingImg} alt="cooking image" /> */}
+            <img src={image || cookingImg} alt="cooking image" />
             <div className="allcourse--innerdiv">
               <hr/>
               <p className="bold">{course.coursename}</p>

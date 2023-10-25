@@ -1,55 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cookingImg from '../images/cooking.png'
+import uploadImg from '../images/uploadImg.png'
 import updateImg from '../images/update.png'
 import deleteImg from '../images/delete.png'
+import { useRef } from 'react'
 
-const CreateNote = ({input, setInput, saveHandler}) => {
+const CreateCourse = ({input, setInput, saveHandler,image,setImage}) => {
 
-  const {coursename, intake, instructor, image}= input
+  const {coursename, intake, instructor}= input
+  const inputRef = useRef(null);
+
+  
+
+  const handleImageClick =()=>
+  {
+    inputRef.current.click();
+  }
+
+  const handleImageChange = (event) =>
+  {
+     const file= event.target.files[0];
+     console.log(file);
+     setImage(event.target.files[0]);
+  }
+
 
   function handleChange(event)
   {
     const {name, value, type}=event.target
      setInput( prevInputText=>({
         ...prevInputText,
-        [name]: value
+        [name]: value,
+        //image: event.target.files[0]
+
      }))
 
   }
+
+  const handleSave = () => {
+    // Pass the image to the saveHandler function or handle it as needed
+    saveHandler({ ...input, image });
+  };
     
-
-  function handleImageUpload (event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setInput( prevInput=>(
-          {
-            ...prevInput,
-            image: event.target.result
-          }
-        )
-          )
-      }
-      reader.readAsDataURL(file);
-    }
-  }
-
-
 
   return (
     <main className="allcourse--main">
           
-    <div className="allcourse--div">
+    <div className="editcourses--div">
 
-        {/* <input type="file" 
-                name="image"
-                value={image}
-                onChange={handleImageUpload}
-                /> */}
-        <img src={cookingImg} alt="" />
-        <div className="allcourse--innerdiv">
-        <hr />
+         <div onClick={handleImageClick}>
+          
+          {image? <img src={URL.createObjectURL(image)} alt="" /> : <img src={uploadImg} alt="" />}
+         <input type="file" ref={inputRef} onChange={handleImageChange} style={{display : "none"}}/> 
+         </div>
+
+         <div className="allcourse--innerdiv">
+         <hr />
        
              <input type="text" 
                 placeholder='Course Name'
@@ -86,4 +92,4 @@ const CreateNote = ({input, setInput, saveHandler}) => {
   )
 }
 
-export default CreateNote
+export default CreateCourse

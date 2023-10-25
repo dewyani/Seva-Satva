@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react'
 
 import './App.css'
+import {Routes, Route, Link, useNavigate} from "react-router-dom"
+
 import Login from './student-components/Login'
 import Register from './student-components/Register'
 import RegisterInstructor from './student-components/RegisterInstructor'
 import RegisterStudent from './student-components/RegisterStudent'
+
+import NavBar from './student-components/NavBar'
 import Dashboard from './student-components/Dashboard'
 import AllCourses from './admin-components/AllCourses'
 import FillChoice from './student-components/FillChoice'
 import Grievance from './student-components/Grievance'
-import {Routes, Route, Link} from "react-router-dom"
-import NavBar from './student-components/NavBar'
+import Alloted from './student-components/Alloted'
+import CourseNotAlloted from './student-components/CourseNotAlloted'
 
 import AdminNavBar from './admin-components/AdminNavbar'
 import EditCourse from './admin-components/EditCourse'
@@ -19,30 +23,37 @@ import AdminGrievance from './admin-components/AdminGrievance'
 
 import CreateCourse from './admin-components/CreateCourse'
 import Course from './admin-components/Course'
+import StudentsEnrolled from './admin-components/StudentsEnrolled'
 
 import {nanoid}  from "nanoid"
 
 
 import cookingImg from "./images/cooking.png"
 import AllCoursesStudent from './student-components/AllCoursesStudent'
+import GrievancePage from './admin-components/GrievancePage'
+
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 
 
 function App() {
-        
 
+const navigate= useNavigate();
 const [input, setInput] = React.useState({
     coursename: "",
     intake: "",
     instructor: "",
-    image: null
+    // image: null
 })
+
+        const [image,setImage] = React.useState("")
         const [courses, setCourses] = React.useState([])
         const [editToggle, setEditToggle] = React.useState(null)
     
 
         // console.log(courses)
-        // console.log(input.image)
+        
         // console.log(input)
         const editHandler = (id, coursename, intake, instructor, image) => {
             setEditToggle(id)
@@ -53,7 +64,7 @@ const [input, setInput] = React.useState({
                 coursename:input.coursename,
                 intake:input.intake,
                 instructor:input.instructor,
-                image:input.image
+                // image:input.image
                 }
 
             ))
@@ -67,7 +78,7 @@ const [input, setInput] = React.useState({
                         coursename:input.coursename,
                         intake:input.intake,
                         instructor:input.instructor,
-                        image:input.image
+                        // image:input.image
                     }
                     : course
                 )))
@@ -80,7 +91,7 @@ const [input, setInput] = React.useState({
                         coursename:input.coursename,
                         intake:input.intake,
                         instructor:input.instructor,
-                        image:input.image
+                        // image:input.image
                     }
                 ])
 
@@ -93,6 +104,23 @@ const [input, setInput] = React.useState({
         const deleteHandler = (id) => {
             const newcourses = courses.filter(n => n.id !== id)
             setCourses(newcourses)
+        }
+
+        function handleClick(id)
+        {
+            courses.map((course)=>
+            {
+                if(course.id==id)
+               { 
+
+                <StudentsEnrolled
+                  id={course.id}
+                  name={course.coursename}/>
+                 return navigate('/studentsenrolled/') 
+               }
+                    
+            }
+            )
         }
 
         // backend
@@ -111,6 +139,7 @@ const [input, setInput] = React.useState({
         
   return (
     
+    <DndProvider backend={HTML5Backend}>
     <div>
 
        <div>
@@ -141,15 +170,27 @@ const [input, setInput] = React.useState({
 
       } 
       />
+      
       <Route  path="/fillChoice" element={<FillChoice 
                                              courses={courses}/>} />
+       
       <Route  path="/grievance" element={<Grievance/>} /> 
 
 
+        <Route path='/studentsenrolled' element={<StudentsEnrolled/>}/>
+        <Route path='/alloted' element={<Alloted/>}/>
+        <Route path='/coursenotalloted' element={<CourseNotAlloted/>}/>
+
+        <Route path='/grievancepage' element={<GrievancePage/>}/>
+
+                                                 
         <Route  path="/allcourses" element={<AllCourses 
                                       courses={courses}
+                                      image={image}
+                                      handleClick={handleClick}
                                       />}
                                        /> 
+                                       
         <Route path="/allcoursesstudent" element={<AllCoursesStudent
                                             courses={courses}
                                             />}/>
@@ -162,7 +203,8 @@ const [input, setInput] = React.useState({
                                              setInput={setInput}
                                              editToggle={editToggle}
                                              setEditToggle={setEditToggle}
-                                        
+                                             image={image}
+                                             setImage={setImage}
                                              editHandler={editHandler}
                                              saveHandler={saveHandler}
                                              deleteHandler={deleteHandler}
@@ -178,7 +220,7 @@ const [input, setInput] = React.useState({
 
     </div>
      
-      
+    </DndProvider>  
 
   )
 }

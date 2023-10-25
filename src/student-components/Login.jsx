@@ -3,6 +3,7 @@ import Register from './Register'
 import RegisterInstructor from './RegisterInstructor';
 import RegisterStudents from './RegisterStudent';
 import loginImage from '../images/login.png';
+import headerImage from '../images/header.png'
 import AllCourses from '../admin-components/AllCourses';
 
 
@@ -56,7 +57,18 @@ export default function Login(props)
     }
     
     return (
+
+    <>
    
+   <header className='login--header'>
+         <img src={headerImage} alt="header" />
+         <div className="navbar--div login--seva-satva" >
+                <h1>SEVA </h1>
+                <h1>SATVA</h1>
+                <p>Lifting Abilities, Enlarging Perspectives</p>
+         </div>
+    </header>
+
     <section className='login--section'>
     <form onSubmit={handleSubmit} className="login--form">
 
@@ -124,6 +136,7 @@ export default function Login(props)
 
     <img src={loginImage} alt="loginImage"  className='login--img'/>
     </section>
+    </>
     )
 }
 
