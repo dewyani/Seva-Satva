@@ -10,6 +10,7 @@ const courseRouter = require("./routes/Course")
 const connectDB = require("./db/connect")
 const port = process.env.PORT
 
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
 app.use(cookieParser())
 

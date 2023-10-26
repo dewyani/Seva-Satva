@@ -1,8 +1,11 @@
-# React + Vite
+# Seva Satva Web Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## CITL Project
+## Team Members : 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Sr. No. | NAME | UID | 
+| -- | -- | -- | 
+| 01. | Ms. Darshana Chothave | 2021300021 |
+| 02. | Ms. Dewyani Deshmukh | 2021300024 |
+| 03. | Ms. Neerja Doshi | 2021300029 |
+| 04. | Ms. Apulki Dubey | 2021300032 | 
