@@ -1,9 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
-export default function NavBar()
-{
-    return(
+export default function NavBar() {
+    return (
         <nav className="navbar--nav">
 
             <div className="navbar--div">
@@ -12,6 +11,7 @@ export default function NavBar()
                 <p>Lifting Abilities, Enlarging Perspectives</p>
             </div>
             <ul className="navbar--ul">
+                <li><Link to="/recommend">Recommend Books</Link></li>
                 <li><Link to="/allcoursesstudent">All Courses</Link></li>
                 <li><Link to="/dashboard">Dashboard</Link></li>
                 <li><Link to="/fillChoice">Fill Choice</Link></li>
