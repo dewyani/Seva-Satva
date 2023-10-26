@@ -22,6 +22,7 @@ export default function RegisterStudent() {
     event.preventDefault();
     await axios.post("http://localhost:4000/auth/register" , { username , email , branch , uid , password , role})
     .then((response) => {
+      // console.log(response)
       alert("successfully registered !!" , response)
     })
     .catch((error) => {
@@ -135,7 +136,7 @@ export default function RegisterStudent() {
             </button>
 
             <p>
-              Already registered?{" "}
+              Already registered?
               <a href="/" className="nodecor">
                 Login here
               </a>
