@@ -48,8 +48,11 @@ export default function Login(props) {
                 alert("Error While Logginin ", error.message)
             })
 
-            if(redirect) {
+            if(redirect && role === "Admin") {
                 navigate("/allcourses")
+            }
+            if(redirect && role === "Student") {
+                navigate("/allcoursesstudent")
             }
     }
 

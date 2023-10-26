@@ -4,9 +4,11 @@ import Login from "./Login";
 import profileLogo from "../images/user.png";
 import headerImage from "../images/header.png";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   
+  const navigate = useNavigate()
   // mandatory
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -19,6 +21,7 @@ export default function Register() {
     await axios.post("http://localhost:4000/auth/register" , { username , email , password , role})
     .then((response) => {
       alert("successfully registered !!" , response)
+      navigate("/")
     })
     .catch((error) => {
       alert("Error While Registering " , error.message)
@@ -91,7 +94,8 @@ export default function Register() {
 
             <button className="nodecor submit">
               {/* {" "} */}
-              <a href="/allcourses">SUBMIT</a>
+              {/* <a href="/allcourses">SUBMIT</a> */}
+              <a>SUBMIT</a>
             </button>
 
             <p>
