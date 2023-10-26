@@ -372,7 +372,7 @@ position: absolute;
 .login--form-input-design, select{
    
   padding: 8px;
-  width: 14rem;
+  width: 15rem;
   border-radius: 5px;
   border: 1px solid black;
   margin-bottom: 19px;
@@ -482,7 +482,7 @@ position: absolute;
 .register--form-input-design{
    
   padding: 8px;
-  width: 14rem;
+  width: 15rem;
   border-radius: 5px;
   border: 1px solid black;
   margin-bottom: 19px;
@@ -517,7 +517,7 @@ position: absolute;
 .registerstudent--form-input-design, select{
    
   padding: 7px;
-  width: 14rem;
+  width: 15rem;
   border-radius: 5px;
   border: 1px solid black;
   margin-bottom: 13px;
@@ -529,12 +529,12 @@ position: absolute;
 .fillchoice--outerdiv{
 
   display: grid;
-  grid-template-columns: 21% 78%;
+  grid-template-columns: 23% 78%;
 }
 
 .fillchoice--outerdiv aside{
 
-  border: 2px solid rebeccapurple;
+  /* border: 2px solid rebeccapurple; */
   background-color: #FCD9D9;
   height: 100vh;
 }
@@ -542,13 +542,13 @@ position: absolute;
 .fillchoice--section{
 
   
-  border: 2px solid red;
+  /* border: 2px solid red; */
   color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 25px;
+  /* justify-content: center; */
+  margin: 15px;
 }
 
 .fillchoice--section p{
@@ -557,23 +557,30 @@ position: absolute;
   font-size: 16px;
   color: #DC1313 ;
   font-weight: bold;
+  margin-top: 2rem;
+
 }
 
 .fillchoice--div{
 
   border: 1px solid black;
   width: 415px;
-  height: 407px;
+  height: 395px;
   margin: 9px;
   padding: 1.6rem 5.2rem;
   background-color:rgb(255, 252, 248);
 
 }
 
+.fillchoice--aside{
+   padding: 2rem 1rem;
+  
+}
+
 .fillchoice--div h4{
   font-family: 'Rounded Mplus 1c', sans-serif;
-  font-size: 23px;
-  margin-bottom: 28px;
+  font-size: 21px;
+  margin-bottom: 19px;
 }
 
 .fillchoice--label
@@ -613,10 +620,12 @@ position: absolute;
 .fillchoice--li img{
 
   height: 43px;
-  width: 78px;
+  width: 105px;
   display: block;
   z-index: 1;
   border-radius: 5px;
+  filter:brightness(0.8);
+  
 }
 
 .fillchoice--li span{
@@ -630,7 +639,23 @@ position: absolute;
 .preferences
 {
   height: 190px;
+  color: white;
 
+}
+
+.fillchoice--button{
+
+    background-color: #3097D1;
+    background-color: #D14D30;;
+    width: 4rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 0.5rem;
+    margin-top: 5px;
+    font-size: 11px;
+    margin-left: 5.2rem;
+    cursor: pointer;
+    color:white;
 }
 
 
