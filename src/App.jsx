@@ -145,6 +145,7 @@ const [input, setInput] = React.useState({
        <div>
       <Routes>
       <Route path="/" element={< Login/>}/>
+      {/* <Route path ="/recommend" element={<Recommender/>} /> */}
       <Route path="/register" element={<Register />}/>
       <Route path="/registerinstructor" element={<RegisterInstructor />}/>
       <Route path="/registerstudent" element={<RegisterStudent />}/>

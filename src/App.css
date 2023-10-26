@@ -878,17 +878,14 @@ color: white;
 
 .admingrievance--main-div{
 
-     /* border: 2px solid red; */
+     border: 2px solid red;
      display: flex;
      flex-wrap: wrap;
      padding: 2rem;
      justify-content: center;
      align-items: center;
      margin: 0.5rem;
-
-
-
-}
+} 
 
 .admingrievance--sub-div{
 
