@@ -15,9 +15,6 @@ export default function FillChoice(props) {
     preference: [],
   });
 
-
-  const [board, setBoard] = React.useState([]);
-
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "li",
     drop: (item) => addImageToDiv(item.id),
@@ -34,42 +31,30 @@ export default function FillChoice(props) {
   const addImageToDiv = (id) => {
     console.log("id " + id);
 
-    var data = courses.filter((course) => String(id) === String(course.id));
+    const data = courses.filter((course) => String(id) === String(course.id));
 
-    // const data = courses.map(course=>
-
-    //   {
-
-    //     if(id===course.id)
-    //     {
-    //       return course
-
-    //     }
-    //   }
-    //      )
-
-    console.log(data);
-
-    //  console.log("list" +list[0])
-    setBoard((board) => [...board, data[0]]);
+    setPreferenceData((prevPreferenceData) => ({
+      ...prevPreferenceData,
+      preference: [...prevPreferenceData.preference, data[0]],
+    }));
   };
 
-  console.log(board);
+  
 
-  // console.log(preferenceData);
-  function handleChange(event, board) {
+  
+  function handleChange(event) {
     const { value, name } = event.target;
 
     setPreferenceData((prevpreferenceData) => {
       return {
         ...prevpreferenceData,
         [name]: value,
-        preference: board,
+        
       };
     });
   }
-
-  console.log(preferenceData);
+ 
+ console.log(preferenceData) 
 
   //get the array from backend
   React.useEffect(function () {
@@ -131,12 +116,9 @@ export default function FillChoice(props) {
                 className="fillchoice--input preferences"
               />  */}
 
-              {/* {board.map((element) => (
-                  <Drag key={element.id} id={element.id} name={element.coursename} />
-                ))}  */}
-
-              {board.map((element) => {
-                if (board.length > 0) {
+              {preferenceData.preference.map((element) => {
+                if (preferenceData.preference.length > 0)
+                { 
                   return (
                     <Drag
                       key={element.id}
@@ -145,14 +127,10 @@ export default function FillChoice(props) {
                     />
                   );
                 }
-              })}
+              }
+              )}
 
-              {/* {board.map((element) => {
-  if (!element || !element.id) {
-    return console.log("no id")// or handle accordingly
-  }
-  return <Drag key={element.id} id={element.id} name={element.coursename} />;
-})}  */}
+             
             </div>
           </div>
           <button type="submit" className="fillchoice--button">SUBMIT</button>
