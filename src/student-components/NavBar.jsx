@@ -11,9 +11,10 @@ export default function NavBar() {
                 <p>Lifting Abilities, Enlarging Perspectives</p>
             </div>
             <ul className="navbar--ul">
-                <li><Link to="/recommend">Recommend Books</Link></li>
-                <li><Link to="/allcoursesstudent">All Courses</Link></li>
+                
                 <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/allcoursesstudent">All Courses</Link></li>
+                <li><Link to="/recommend">Recommend Books</Link></li>
                 <li><Link to="/fillChoice">Fill Choice</Link></li>
                 <li><Link to="/grievance">Grievance</Link></li>
             </ul>
