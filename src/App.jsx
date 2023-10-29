@@ -44,15 +44,14 @@ const [input, setInput] = React.useState({
     coursename: "",
     intake: "",
     instructor: "",
-    // image: null
+    image: "",
 })
 
-        const [image,setImage] = React.useState("")
         const [courses, setCourses] = React.useState([])
         const [editToggle, setEditToggle] = React.useState(null)
     
 
-        // console.log(courses)
+        console.log(courses)
         
         // console.log(input)
         const editHandler = (id, coursename, intake, instructor, image) => {
@@ -64,7 +63,7 @@ const [input, setInput] = React.useState({
                 coursename:input.coursename,
                 intake:input.intake,
                 instructor:input.instructor,
-                // image:input.image
+                image:input.image
                 }
 
             ))
@@ -78,7 +77,7 @@ const [input, setInput] = React.useState({
                         coursename:input.coursename,
                         intake:input.intake,
                         instructor:input.instructor,
-                        // image:input.image
+                        image:input.image
                     }
                     : course
                 )))
@@ -91,7 +90,7 @@ const [input, setInput] = React.useState({
                         coursename:input.coursename,
                         intake:input.intake,
                         instructor:input.instructor,
-                        // image:input.image
+                        image:input.image
                     }
                 ])
 
@@ -106,6 +105,7 @@ const [input, setInput] = React.useState({
             setCourses(newcourses)
         }
 
+        //you made this function
         function handleClick(id)
         {
             courses.map((course)=>
@@ -187,7 +187,6 @@ const [input, setInput] = React.useState({
                                                  
         <Route  path="/allcourses" element={<AllCourses 
                                       courses={courses}
-                                      image={image}
                                       handleClick={handleClick}
                                       />}
                                        /> 
@@ -204,8 +203,6 @@ const [input, setInput] = React.useState({
                                              setInput={setInput}
                                              editToggle={editToggle}
                                              setEditToggle={setEditToggle}
-                                             image={image}
-                                             setImage={setImage}
                                              editHandler={editHandler}
                                              saveHandler={saveHandler}
                                              deleteHandler={deleteHandler}

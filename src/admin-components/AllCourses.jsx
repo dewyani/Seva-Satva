@@ -17,7 +17,8 @@ export default function AllCourses(props) {
         courses.map((course) => (
           <div className="allcourse--div" key={course.id} onClick={()=>props.handleClick(course.id)}>
             {/* <img src={cookingImg} alt="cooking image" /> */}
-            <img src={image || cookingImg} alt="cooking image" />
+            {/* <img src={image || cookingImg} alt="cooking image" /> */}
+            <img src={image} alt="cooking image" />
             <div className="allcourse--innerdiv">
               <hr/>
               <p className="bold">{course.coursename}</p>
