@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 export default function Dashborad(props)
 {
+//    getting data of current logged in user
+    useEffect(() => {
+        axios.get('http://localhost:4000/auth/profile', { withCredentials: true })
+          .then((response) => {
+            console.log(response.data)
+          })
+          .catch((error) => {
+            alert("Error !! from JWT [profile]!! User Previoulsy not signed in !! ")
+          })
+      }, [])
 
-    
-        //backend
-        //assuming data comes in the form of array of object
-    
-
-    // details.map((detail)=(
-    //     add all the data
-    // )
-    // )
-
-    return (
+    return ( 
 
         <>
          <NavBar/> 

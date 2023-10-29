@@ -3,12 +3,16 @@ const router = express.Router()
 
 const {
     register,
+    profile ,
     login,
-    logout
+    logout ,
+    mail
 } = require("../controller/User")
 
 router.route('/register').post(register)
+router.route('/profile').post(profile)
 router.route('/login').post(login)
 router.route('/logout').post(logout)
+router.route('/mail').post(mail)
 
 module.exports = router

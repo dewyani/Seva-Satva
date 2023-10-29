@@ -2,7 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  
+  color: black;
 }
 
 /* body{
@@ -143,6 +143,39 @@
   text-decoration: underline;
  
 } */
+
+
+/*----------------- Recommender-----------------------*/
+
+.recommender--book-parent{
+  display: grid;
+  grid-template-columns: repeat(5 , 1fr) ;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* background-color: rgb(255, 215, 221); */
+}
+
+.recommender--book-border{
+  margin : 20px ;
+  padding: 20px;
+  border: 1px solid red;
+}
+
+.topnav {
+  margin : 20px ;
+  /* background-color: rgb(255, 215, 221); */
+}
+
+.topnav input[type=text] {
+  border-radius: 10px;
+  /* float: right; */
+  width: 80em;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
+}
 
 
 /*----------------- Dashboard-----------------------*/
@@ -762,20 +795,24 @@ position: absolute;
 
 
 /* -------------All Course & Edit Course------------- */
-.allcourse--main{
-  
-  
+.allcourse--main{  
   color: white;
   padding: 74px 39px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   margin:auto;
   box-sizing: border-box;
   /* border: 2px solid sienna; */
-  
-  
+}
+
+.allcourse--main :hover{
+
+  transform:scale(1.005);
+  transition-timing-function: linear;
+  transition: transform 0.5s;
+  cursor: pointer;
 }
 
 
@@ -783,6 +820,9 @@ position: absolute;
 
   position: relative;
   margin: 9px 33px;
+  /* border: 5px solid red ; */
+  height: 10em;
+  width: 10em;
 
 }
 
@@ -794,18 +834,19 @@ position: absolute;
 
 .allcourse--div :hover{
 
-  transform:scale(1.1);
+  transform:scale(1.005);
   /* transition: transform 0.5s; */
   cursor: pointer;
 }
 
 
 .allcourse--div img {
-  width: 227px;
-  height: 259px;
+  width: 240px;
+  height: 300px;
   border-radius: 10px;
-  filter: brightness(86%);
+  /* filter: brightness(86%); */
   z-index: -1;
+  opacity: 0.85;
 }
 
 .editcourses--div img{
@@ -839,11 +880,28 @@ position: absolute;
    
 }
 
+
+.allcourse--innerdiv button{
+
+  padding: 7px;
+  background-color: white;
+  margin: 3px;
+  border-radius: 10px;
+}
+.allcourse--innerdiv button a{ 
+
+  color: red;
+  font-weight: 700;
+  text-decoration: none;
+
+}
+
 .allcourse--bottom--div{
 
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  /* border : 5px solid black */
   
 }
 

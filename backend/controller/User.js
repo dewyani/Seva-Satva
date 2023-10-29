@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const nodemailer = require("nodemailer");
 
 const User = require("../model/User")
 
@@ -52,13 +53,57 @@ const login = async (req, res) => {
     }
 }
 
+// to get who is logged in user
+const profile = async (req, res) => {
+    // from all cookies send by client .. grab token [has our jwt]
+    const { token } = req.cookies;
+    jwt.verify(token, process.env.JWT_SECRET, {}, (err, info) => {
+        if (err) {
+            res.status(400).json("JWT ERROR");
+            throw err;
+        }
+        // info includes our payload sent [username + id]
+        res.json({ status: "from /profile [post]", info });
+    });
+}
+
 // removal of cookie - logout 
 const logout = async (req, res) => {
     res.cookie('token', '').json({ status: "From /logout [post] , coookie removed :)" });
 }
 
+
+const mail = async (req, res) => {
+    const { emailId, allotedCourse } = req.body;
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.USER,
+            pass: process.env.PASS,
+        },
+    });
+
+    const mailOptions = {
+        from: process.env.USER,
+        to: emailId,
+        subject: 'Seva Satva Grievance Resolved !',
+        text: `Your Seva Satva Grievance Has been Resolved. New Course Alloted is : ${allotedCourse}`,
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            res.status(404).json({ status: "From /mail [post] , error in sending email", err })
+        } else {
+            res.json({ status: "From /mail [post] , successfully sent email" , info});
+        }
+    });
+}
+
 module.exports = {
     register,
+    profile,
     login,
-    logout
+    logout , 
+    mail
 }
