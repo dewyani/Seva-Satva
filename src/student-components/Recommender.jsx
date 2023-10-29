@@ -1,36 +1,93 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 const Recommender = () => {
+
+  const [books, setBooks] = useState()
+  const [searchParam, setSeacrhParam] = useState("")
+  const [isbn, setISBN] = useState()
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log(searchParam)
+    await axios.get(`https://openlibrary.org/search.json?q=${searchParam}`)
+      .then((response) => {
+        console.log(response.data.docs[0].isbn[0])
+        setBooks(response.data.docs)
+        console.log(books)
+      })
+      .catch((error) => {
+        alert("Error While Making Query ")
+        console.log(error.message)
+      })
+  }
+
+
+  const printBook = (book) => {
+    return (
+      book.hasOwnProperty("isbn") ? (
+        <div>
+          <h3>{book.title}</h3>
+          <p>Ratings : {book.ratings_average}</p>
+          <p>Author Name : {book.author_name}</p>
+          <img src={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`} />
+        </div>
+      ) : (
+        <div>No ISBN available</div>
+      )
+    )
+  };
+
+
+  if (!books) {
+    return (
+      <div class="topnav">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Search.."
+            onChange={ev => setSeacrhParam(ev.target.value)}
+            value={searchParam}
+          ></input>
+          <div>Enter Book Name to Search Books ... </div>
+        </form>
+      </div>
+    )
+  }
+
   return (
-    <div>Recommender</div>
+    <div>
+      <div class="topnav">
+        <h2>Vote for your favourite books !! 📖📕</h2>
+        <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Search Books Here.."
+            onChange={ev => setSeacrhParam(ev.target.value)}
+            value={searchParam}
+          ></input>
+        </form>
+      </div>
+      <div className='recommender--book-parent'>
+        {books ? (
+          <ul>
+            {books.map((book, i) => (
+              <div 
+              className='recommender--book-border'
+              key={i}>
+                {printBook(book)}
+              </div>
+            ))}
+          </ul>
+        )
+          : (
+            <div>Loading...</div>
+          )}
+
+      </div>
+    </div >
   )
 }
 
 export default Recommender
-
-
-
-const options = {
-  method: 'GET',
-  url: 'https://book-finder1.p.rapidapi.com/api/search',
-  params: {
-    series: 'Wings of fire',
-    book_type: 'Fiction',
-    lexile_min: '600',
-    lexile_max: '800',
-    results_per_page: '25',
-    page: '1'
-  },
-  headers: {
-    'X-RapidAPI-Key': '8e97c57af5mshe6a22df3322de34p115d0fjsn9b8bff00b5b9',
-    'X-RapidAPI-Host': 'book-finder1.p.rapidapi.com'
-  }
-};
-
-try {
-	const response = await axios.request(options);
-	console.log(response.data);
-} catch (error) {
-	console.error(error);
-}

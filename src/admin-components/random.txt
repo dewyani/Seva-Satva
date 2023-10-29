@@ -1,0 +1,48 @@
+      <main className="allcourse--main">
+        {
+        courses.map((course) => (
+          <div className="allcourse--div" key={course.id} onClick={()=>props.handleClick(course.id)}>
+            {/* <img src={cookingImg} alt="cooking image" /> */}
+            <img src={image || cookingImg} alt="cooking image" />
+            <div className="allcourse--innerdiv">
+              <hr/>
+              <p className="bold">{course.coursename}</p>
+              <p>Intake capacity: {course.intake}</p>
+              <p>{course.instructor}</p>
+            </div>
+          </div>
+        ))}
+      </main>
+
+      <main className="allcourse--main">
+        {
+          courses.map((course) => (
+            <div className="allcourse--div" key={course.id} onClick={() => props.handleClick(course._id)}>
+              <img src={image || cookingImg} alt="cooking image" />
+              <div className="allcourse--innerdiv">
+                <hr />
+                <p className="bold">{course.name}</p>
+                <p>Intake capacity: {course.intake_Capacity}</p>
+                <p>Prof. {course.prof_Incharge}</p>
+              </div>
+            </div>
+          ))}
+      </main>
+
+      -- final 
+
+    <main className="allcourse--main">
+        {
+          courses.map((course) => (
+            <div className="allcourse--div" key={course.id} onClick={() => props.handleClick(course._id)}>
+              <img src={image || cookingImg} alt="cooking image" />
+              <div className="allcourse--innerdiv">
+                <hr />
+                <p className="bold">{course.name}</p>
+                <p>Intake capacity: {course.intake_Capacity}</p>
+                <p>Prof. {course.prof_Incharge}</p>
+              </div>
+            </div>
+          ))}
+      </main>
+    </>

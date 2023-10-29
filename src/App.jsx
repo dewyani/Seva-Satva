@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import './App.css'
-import {Routes, Route, Link, useNavigate} from "react-router-dom"
+import { Routes, Route, Link, useNavigate } from "react-router-dom"
 
 import Login from './student-components/Login'
 import Register from './student-components/Register'
@@ -15,6 +15,7 @@ import FillChoice from './student-components/FillChoice'
 import Grievance from './student-components/Grievance'
 import Alloted from './student-components/Alloted'
 import CourseNotAlloted from './student-components/CourseNotAlloted'
+import Recommender from './student-components/Recommender'
 
 import AdminNavBar from './admin-components/AdminNavbar'
 import EditCourse from './admin-components/EditCourse'
@@ -25,7 +26,7 @@ import CreateCourse from './admin-components/CreateCourse'
 import Course from './admin-components/Course'
 import StudentsEnrolled from './admin-components/StudentsEnrolled'
 
-import {nanoid}  from "nanoid"
+import { nanoid } from "nanoid"
 
 
 import cookingImg from "./images/cooking.png"
@@ -47,9 +48,10 @@ const [input, setInput] = React.useState({
     image: "",
 })
 
-        const [courses, setCourses] = React.useState([])
-        const [editToggle, setEditToggle] = React.useState(null)
-    
+    const [image, setImage] = React.useState("")
+    const [courses, setCourses] = React.useState([])
+    const [editToggle, setEditToggle] = React.useState(null)
+
 
         console.log(courses)
         
@@ -94,16 +96,16 @@ const [input, setInput] = React.useState({
                     }
                 ])
 
-            }
-            
-            setInput("")
-            setEditToggle(null)
         }
-    
-        const deleteHandler = (id) => {
-            const newcourses = courses.filter(n => n.id !== id)
-            setCourses(newcourses)
-        }
+
+        setInput("")
+        setEditToggle(null)
+    }
+
+    const deleteHandler = (id) => {
+        const newcourses = courses.filter(n => n.id !== id)
+        setCourses(newcourses)
+    }
 
         //you made this function
         function handleClick(id)
@@ -114,52 +116,52 @@ const [input, setInput] = React.useState({
                { 
 
                 <StudentsEnrolled
-                  id={course.id}
-                  name={course.coursename}/>
-                 return navigate('/studentsenrolled/') 
-               }
-                    
+                    id={course.id}
+                    name={course.coursename} />
+                return navigate('/studentsenrolled/')
             }
-            )
         }
+        )
+    }
 
-        // backend
-        useEffect(() => {
-            const data = JSON.parse(localStorage.getItem("courses"));
-            if (data) {
-               setCourses(data);
-            }
-          }, []);
-    
-      useEffect(() => {
+    // backend
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("courses"));
+        if (data) {
+            setCourses(data);
+        }
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem("courses", JSON.stringify(courses));
-      }, [courses]);
-    
-    
-        
-  return (
-    
-    <DndProvider backend={HTML5Backend}>
-    <div>
+    }, [courses]);
 
-       <div>
-      <Routes>
-      <Route path="/" element={< Login/>}/>
-      {/* <Route path ="/recommend" element={<Recommender/>} /> */}
-      <Route path="/register" element={<Register />}/>
-      <Route path="/registerinstructor" element={<RegisterInstructor />}/>
-      <Route path="/registerstudent" element={<RegisterStudent />}/>
-      <Route  path="/dashboard" 
-      element={ <>
-                <Dashboard name="Raj Sharma" 
-                uid={2021300045} 
-                sem={1} 
-                course="Trek"
-                 grade="AB" 
-                 result="pass"
-                />
 
-                {/* <Dashboard 
+
+    return (
+
+        <DndProvider backend={HTML5Backend}>
+            <div>
+
+                <div>
+                    <Routes>
+                        <Route path="/" element={< Login />} />
+                        <Route path="/recommend" element={<Recommender />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/registerinstructor" element={<RegisterInstructor />} />
+                        <Route path="/registerstudent" element={<RegisterStudent />} />
+                        <Route path="/studentsenrolled/:id" element={<StudentsEnrolled />} />
+                        <Route path="/dashboard"
+                            element={<>
+                                <Dashboard name="Raj Sharma"
+                                    uid={2021300045}
+                                    sem={1}
+                                    course="Trek"
+                                    grade="AB"
+                                    result="pass"
+                                />
+
+                                {/* <Dashboard 
                 uid={2021300043} 
                 sem={2} 
                 course="Cooking"
@@ -167,33 +169,34 @@ const [input, setInput] = React.useState({
                  result="fail"
                 /> */}
 
-               </>
+                            </>
 
-      } 
-      />
-      
-      <Route  path="/fillChoice" element={<FillChoice 
-                                             courses={courses}/>} />
-       
-      <Route  path="/grievance" element={<Grievance/>} /> 
+                            }
+                        />
+
+                        <Route path="/fillChoice" element={<FillChoice
+                            courses={courses} />} />
+
+                        <Route path="/grievance" element={<Grievance />} />
 
 
-        <Route path='/studentsenrolled' element={<StudentsEnrolled/>}/>
-        <Route path='/alloted' element={<Alloted/>}/>
-        <Route path='/coursenotalloted' element={<CourseNotAlloted/>}/>
+                        <Route path='/studentsenrolled' element={<StudentsEnrolled />} />
+                        <Route path='/alloted' element={<Alloted />} />
+                        <Route path='/coursenotalloted' element={<CourseNotAlloted />} />
 
-        <Route path='/grievancepage' element={<GrievancePage/>}/>
+                        <Route path='/grievancepage' element={<GrievancePage />} />
 
-                                                 
-        <Route  path="/allcourses" element={<AllCourses 
-                                      courses={courses}
-                                      handleClick={handleClick}
-                                      />}
-                                       /> 
-                                       
-        <Route path="/allcoursesstudent" element={<AllCoursesStudent
-                                            courses={courses}
-                                            />}/>
+
+                        <Route path="/allcourses" element={<AllCourses
+                            courses={courses}
+                            image={image}
+                            handleClick={handleClick}
+                        />}
+                        />
+
+                        <Route path="/allcoursesstudent" element={<AllCoursesStudent
+                            courses={courses}
+                        />} />
 
          <Route  path="/editcourse" element={<EditCourse
                                              
@@ -208,19 +211,19 @@ const [input, setInput] = React.useState({
                                              deleteHandler={deleteHandler}
 
 
-                                             />} /> 
-         <Route  path="/notalloted" element={<NotAlloted/>} /> 
-         <Route  path="/admingrievance" element={<AdminGrievance/>} />          
+                        />} />
+                        <Route path="/notalloted" element={<NotAlloted />} />
+                        <Route path="/admingrievance" element={<AdminGrievance />} />
 
-        </Routes>
-      </div> 
-         
+                    </Routes>
+                </div>
 
-    </div>
-     
-    </DndProvider>  
 
-  )
+            </div>
+
+        </DndProvider>
+
+    )
 }
 
 export default App

@@ -142,10 +142,18 @@ const allCourse = async (req , res) => {
     res.json({ path: "From /allCourse [get] , successfully listing all courses", courseDocs })
 }
 
-module.exports = {
+// get one course
+const selectedCourse = async (req , res) => {
+    const {id} = req.params
+    const courseDocs = await Course.findOne({_id : id}).populate('enrolled' , ["username" , "email"])
+    res.json({ path: "From /allCourse [get] , successfully listing all courses", courseDocs })
+}
+
+module.exports = { 
     addCourse,
     setAllPref,
     allotCourse , 
     allAvilableCourse , 
-    allCourse
+    allCourse , 
+    selectedCourse
 }
