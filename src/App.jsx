@@ -40,62 +40,61 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
 
-    const navigate = useNavigate();
-    const [input, setInput] = React.useState({
-        coursename: "",
-        intake: "",
-        instructor: "",
-        // image: null
-    })
+const navigate= useNavigate();
+const [input, setInput] = React.useState({
+    coursename: "",
+    intake: "",
+    instructor: "",
+    image: "",
+})
 
     const [image, setImage] = React.useState("")
     const [courses, setCourses] = React.useState([])
     const [editToggle, setEditToggle] = React.useState(null)
 
 
-    // console.log(courses)
-
-    // console.log(input)
-    const editHandler = (id, coursename, intake, instructor, image) => {
-        setEditToggle(id)
-        setInput((prevInput) => (
-
-            {
+        console.log(courses)
+        
+        // console.log(input)
+        const editHandler = (id, coursename, intake, instructor, image) => {
+            setEditToggle(id)
+            setInput((prevInput)=> (
+             
+                   {
                 ...prevInput,
-                coursename: input.coursename,
-                intake: input.intake,
-                instructor: input.instructor,
-                // image:input.image
-            }
+                coursename:input.coursename,
+                intake:input.intake,
+                instructor:input.instructor,
+                image:input.image
+                }
 
-        ))
-    }
-
-    const saveHandler = () => {
-        if (editToggle) {
-            setCourses(courses.map((course) => (
-                course.id === editToggle ?
-                    {
-                        ...course,
-                        coursename: input.coursename,
-                        intake: input.intake,
-                        instructor: input.instructor,
-                        // image:input.image
+            ))
+        }
+        
+        const saveHandler = () => {
+            if(editToggle) {
+                setCourses(courses.map((course) => (
+                    course.id === editToggle ?
+                    {...course, 
+                        coursename:input.coursename,
+                        intake:input.intake,
+                        instructor:input.instructor,
+                        image:input.image
                     }
                     : course
-            )))
-        }
-
-        else {
-            setCourses((prevCourses) => [
-                ...prevCourses, {
-                    id: nanoid(),
-                    coursename: input.coursename,
-                    intake: input.intake,
-                    instructor: input.instructor,
-                    // image:input.image
-                }
-            ])
+                )))
+            } 
+            
+            else {
+                setCourses((prevCourses) => [
+                    ...prevCourses, {
+                        id: nanoid(),
+                        coursename:input.coursename,
+                        intake:input.intake,
+                        instructor:input.instructor,
+                        image:input.image
+                    }
+                ])
 
         }
 
@@ -108,9 +107,13 @@ function App() {
         setCourses(newcourses)
     }
 
-    function handleClick(id) {
-        courses.map((course) => {
-            if (course.id == id) {
+        //you made this function
+        function handleClick(id)
+        {
+            courses.map((course)=>
+            {
+                if(course.id==id)
+               { 
 
                 <StudentsEnrolled
                     id={course.id}
@@ -195,19 +198,17 @@ function App() {
                             courses={courses}
                         />} />
 
-                        <Route path="/editcourse" element={<EditCourse
-
-                            courses={courses}
-                            setCourses={setCourses}
-                            input={input}
-                            setInput={setInput}
-                            editToggle={editToggle}
-                            setEditToggle={setEditToggle}
-                            image={image}
-                            setImage={setImage}
-                            editHandler={editHandler}
-                            saveHandler={saveHandler}
-                            deleteHandler={deleteHandler}
+         <Route  path="/editcourse" element={<EditCourse
+                                             
+                                             courses={courses}
+                                             setCourses={setCourses}
+                                             input={input}
+                                             setInput={setInput}
+                                             editToggle={editToggle}
+                                             setEditToggle={setEditToggle}
+                                             editHandler={editHandler}
+                                             saveHandler={saveHandler}
+                                             deleteHandler={deleteHandler}
 
 
                         />} />

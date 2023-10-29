@@ -52,7 +52,7 @@ export default function Login(props) {
                 navigate("/allcourses")
             }
             if(redirect && role === "Student") {
-                navigate("/allcoursesstudent")
+                navigate("/dashboard")
             }
     }
 

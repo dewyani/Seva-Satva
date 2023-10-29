@@ -7,10 +7,11 @@ import AllCourses from './AllCourses'
 import AdminNavBar from './AdminNavbar'
 
 
-export default function EditCourse({courses, editToggle, input , image, setImage, saveHandler, setInput ,editHandler,deleteHandler}){
+export default function EditCourse({courses, editToggle, input, saveHandler, setInput ,editHandler,deleteHandler}){
    
-    console.log(courses.id)
-    console.log(editToggle)
+    // console.log(courses.id)
+    // console.log(courses)
+    // console.log(editToggle)
 
 
 return (
@@ -22,10 +23,8 @@ return (
                 editToggle === course.id ?
                 <CreateCourse 
                 input ={input}
-                image={image}
                 setInput  = {setInput } 
                 saveHandler = {saveHandler}
-                setImage ={setImage}
                 />
                 :
                 
@@ -35,8 +34,7 @@ return (
                     coursename={course.coursename}
                     intake={course.intake}
                     instructor={course.instructor}
-                    // image={course.image}
-                    image={image}
+                    image={course.image}
                     editHandler = {editHandler}
                     deleteHandler= {deleteHandler}
                 >
@@ -50,8 +48,6 @@ return (
             editToggle === null ? 
             <CreateCourse 
             input ={input}
-            image={image}
-            setImage  = {setImage } 
             setInput  = {setInput } 
             saveHandler = {saveHandler}
         /> : <></>
