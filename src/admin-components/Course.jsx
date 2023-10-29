@@ -2,12 +2,12 @@ import React from 'react'
 import cookingImg from '../images/cooking.png'
 import updateImg from '../images/update.png'
 import deleteImg from '../images/delete.png'
-const Course = ({id, coursename, intake, instructor, image, editHandler, deleteHandler}) => {
+const Course = ({id, coursename,image, intake, instructor, editHandler, deleteHandler}) => {
  
  return (
          
   <div className="editcourses--div">
-      <img src={image || cookingImg} alt="cooking image" />
+      <img src={image} alt="cooking image" />
       <div className="allcourse--innerdiv">
       <hr />
       <p className="bold">{coursename}</p>

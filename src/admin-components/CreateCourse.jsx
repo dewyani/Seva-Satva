@@ -5,9 +5,9 @@ import updateImg from '../images/update.png'
 import deleteImg from '../images/delete.png'
 import { useRef } from 'react'
 
-const CreateCourse = ({input, setInput, saveHandler,image,setImage}) => {
+const CreateCourse = ({input, setInput, saveHandler}) => {
 
-  const {coursename, intake, instructor}= input
+  const {coursename, intake, instructor, image}= input
   const inputRef = useRef(null);
 
   
@@ -17,11 +17,22 @@ const CreateCourse = ({input, setInput, saveHandler,image,setImage}) => {
     inputRef.current.click();
   }
 
+
+
   const handleImageChange = (event) =>
   {
-     const file= event.target.files[0];
+     const file=event.target.files[0];
+     const imageUrl = URL.createObjectURL(file)
+     
      console.log(file);
-     setImage(event.target.files[0]);
+    //  setImage(event.target.files[0]);
+    setInput(prevInputText =>(
+      {
+        ...prevInputText,
+        image: imageUrl
+      }
+    )
+    )
   }
 
 
@@ -31,26 +42,22 @@ const CreateCourse = ({input, setInput, saveHandler,image,setImage}) => {
      setInput( prevInputText=>({
         ...prevInputText,
         [name]: value,
-        //image: event.target.files[0]
 
      }))
 
   }
 
-  const handleSave = () => {
-    // Pass the image to the saveHandler function or handle it as needed
-    saveHandler({ ...input, image });
-  };
-    
+
 
   return (
     <main className="allcourse--main">
           
     <div className="editcourses--div">
 
-         <div onClick={handleImageClick}>
+         <div onClick={handleImageClick} style={{border: "2px solid red"}}>
           
-          {image? <img src={URL.createObjectURL(image)} alt="" /> : <img src={uploadImg} alt="" />}
+          {image? <img src={image} alt="" /> : <img src={uploadImg} alt="" />}
+        
          <input type="file" ref={inputRef} onChange={handleImageChange} style={{display : "none"}}/> 
          </div>
 

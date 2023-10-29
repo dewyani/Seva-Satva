@@ -315,6 +315,9 @@ position: absolute;
    font-weight: 12px;
    justify-content: center;
    align-items: center;
+   background-image: linear-gradient(90deg, #ffffff,#e2a4a4, #e47c7c, #f0d8d8);
+background-size: 400% 400%;
+animation: gradient 3s ease infinite;
 }
 
 .login--form{
