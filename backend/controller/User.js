@@ -35,7 +35,7 @@ const login = async (req, res) => {
 
         if (passOk) {
             // logged in .. send jwt token  [NO OPTS .. 3rd arg] with payolads id + username + role
-            jwt.sign({ username, id: userDoc._id, role }, process.env.JWT_SECRET, {}, (err, token) => {
+            jwt.sign({ username, id: userDoc._id, role, email: userDoc.email }, process.env.JWT_SECRET, {}, (err, token) => {
                 if (err) throw err;
                 res
                     .cookie('token', token)
@@ -73,6 +73,18 @@ const logout = async (req, res) => {
 }
 
 
+// search for user based on username
+const searchUser = async (req, res) => {
+    const { username } = req.body;
+    const userDoc = await User.findOne({ username });
+
+    if (userDoc) {
+        res.status(200).json({ status: "From /search [post] , Found Matching User", userDoc });
+    } else {
+        res.status(400).json({ status: "From /search [post] , No User Found" });
+    }
+}
+
 const mail = async (req, res) => {
     const { emailId, allotedCourse } = req.body;
 
@@ -95,7 +107,7 @@ const mail = async (req, res) => {
         if (err) {
             res.status(404).json({ status: "From /mail [post] , error in sending email", err })
         } else {
-            res.json({ status: "From /mail [post] , successfully sent email" , info});
+            res.json({ status: "From /mail [post] , successfully sent email", info });
         }
     });
 }
@@ -104,6 +116,7 @@ module.exports = {
     register,
     profile,
     login,
-    logout , 
-    mail
+    logout,
+    mail , 
+    searchUser
 }

@@ -42,6 +42,8 @@ const Recommender = () => {
   if (!books) {
     return (
       <div class="topnav">
+        <h2>Vote for your favourite books !! 📖📕</h2>
+        <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -73,9 +75,9 @@ const Recommender = () => {
         {books ? (
           <ul>
             {books.map((book, i) => (
-              <div 
-              className='recommender--book-border'
-              key={i}>
+              <div
+                className='recommender--book-border'
+                key={i}>
                 {printBook(book)}
               </div>
             ))}
