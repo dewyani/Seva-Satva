@@ -152,23 +152,27 @@
   grid-template-columns: repeat(5 , 1fr) ;
   flex-direction: row;
   flex-wrap: wrap;
+  color: black
   /* background-color: rgb(255, 215, 221); */
 }
 
 .recommender--book-border{
   margin : 20px ;
   padding: 20px;
+  color: black ;
   border: 1px solid red;
 }
 
 .topnav {
   margin : 20px ;
+  color: black
   /* background-color: rgb(255, 215, 221); */
 }
 
 .topnav input[type=text] {
   border-radius: 10px;
   /* float: right; */
+  /* color: black; */
   width: 80em;
   padding: 6px;
   margin-top: 8px;
