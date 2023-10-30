@@ -89,9 +89,18 @@ const resolveGrievance = async (req, res) => {
     }
 }
 
+// get one course
+const selectedGrievance = async (req , res) => {
+    const {id} = req.params
+    const grievanceDoc = await Grievance.findOne({_id : id}).populate('postedBy' , ["_id" , "username" , "email" , "prev_Taken_Courses"])
+    res.json({ path: "From /selectedGrievance [get] , successfully listing complete data of seleted grievance", grievanceDoc })
+}
+
+
 
 module.exports = {
     addGrievance,
     allGrievance,
-    resolveGrievance
+    resolveGrievance , 
+    selectedGrievance
 }

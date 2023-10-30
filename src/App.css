@@ -2,7 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  color: black;
+  /* color: black */
 }
 
 /* body{
@@ -182,8 +182,11 @@
 
 .dashboard--main{
    
-   position: relative;
+   /* position: relative; */
+   display: flex;
    background-color: transparent;
+   justify-content: center;
+   align-items: center;
 
 
 }
@@ -193,9 +196,10 @@
   font-size: 21px;
   font-weight: 600px;
   color: black;
+  /* margin : 2em 10em */
   position: absolute;
-  top: 5.2rem;
-  left: 26.5rem;
+  top: 10rem;
+  left: 2rem;
 }
 
 /* .dashboard--first-div */
@@ -213,11 +217,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  margin: 2em 0 ;
+  /* position: absolute;
   left: 26.1rem;
-  top: 12.1rem;
-  
-  
+  top: 12.1rem; */
+}
+
+.dashboard--second-div:hover{
+
+  transform:scale(1.03);
+  transition-timing-function: linear;
+  transition: transform 0.5s;
+  cursor: pointer;
 }
 
 .dashboard--second-div button{
@@ -964,6 +975,25 @@ color: white;
 
 }
 
+.admingrievance--main-div button {
+  background-color :rgb(232, 73, 15);
+  color: #fff;
+  border:none; 
+  border-radius:10px; 
+  padding:15px;
+  min-height:30px; 
+  min-width: 120px;
+  font-weight: bold;
+}
+
+.admingrievance--main-div button:hover {
+  background-color : #fa936d;
+  transition: 0.7s;
+}
+
+.admingrievance--main-div button a {
+  text-decoration: none;
+}
 
 .admingrievance--p-div{
   position: absolute;
@@ -991,21 +1021,28 @@ color: white;
 {
   background-color: #FFD788;
   width:650px;
-  height: 382px;
+  height: 20em;
   color: black;
   font-family: 'Istok Web', sans-serif;
   font-weight: bolder;
   border-radius: 10px;
   box-shadow: 3px 3px 4px #b1adad;
-  margin: 1rem 3rem;
+  margin: 1rem;
   position: relative;
 }
 
 .grievancepage--p-div{
-  position: absolute;
-  top: 1rem;
+  position: relative;
+  /* top: 1rem; */
   padding: 3rem;
 
+}
+
+.grievancepage--botom-right{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 5em ;
 }
 
 .space{
@@ -1019,19 +1056,33 @@ color: white;
   font-weight: bold;
 }
 
+.grievancepage--form{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0 0 0 ;
+}
+
 .grievancepage--button{
   width: 120px;
   height:43px;
-  background-color: #D14D30;
+  margin: 0 0 0 10em;
+  background-color: #c72f0d;
   color: white;
   border: none;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   border-radius: 5px;
-  position: relative;
-  left:15rem;
+  /* position: relative; */
+  /* left:15rem; */
   cursor: pointer;
 }
+
+.grievancepage--button:hover {
+  background-color : #f07346;
+  transition: 0.7s;
+}
+
 
 /* -----------Admin NotAlloted-----------*/
 

@@ -39,7 +39,7 @@ export default function Login(props) {
 
         console.log(username, password, role)
 
-        await axios.post("http://localhost:4000/auth/login", { username, password, role } ,{withCredentials : true })
+        await axios.post("http://localhost:4000/auth/login", { username, password, role  } ,{withCredentials : true })
             .then((response) => {
                 alert("User LoggedIn Successfully")
                 setRedirect(true)
