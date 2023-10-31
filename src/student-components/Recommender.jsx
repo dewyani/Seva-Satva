@@ -17,7 +17,7 @@ const Recommender = () => {
         console.log(books)
       })
       .catch((error) => {
-        alert("Error While Making Query ")
+        alert("Error While Making Query")
         console.log(error.message)
       })
   }
@@ -41,7 +41,7 @@ const Recommender = () => {
 
   if (!books) {
     return (
-      <div class="topnav">
+      <div className="recommender--outer-div">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -49,7 +49,7 @@ const Recommender = () => {
             onChange={ev => setSeacrhParam(ev.target.value)}
             value={searchParam}
           ></input>
-          <div>Enter Book Name to Search Books ... </div>
+          <div className="setcolor">Enter Book Name to Search Books ... </div>
         </form>
       </div>
     )
@@ -57,7 +57,7 @@ const Recommender = () => {
 
   return (
     <div>
-      <div class="topnav">
+      <div className="recommender--outer-div">
         <h2>Vote for your favourite books !! 📖📕</h2>
         <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3>
         <form onSubmit={handleSubmit}>
