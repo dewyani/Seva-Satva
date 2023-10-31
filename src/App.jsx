@@ -151,6 +151,7 @@ const [input, setInput] = React.useState({
                         <Route path="/registerinstructor" element={<RegisterInstructor />} />
                         <Route path="/registerstudent" element={<RegisterStudent />} />
                         <Route path="/studentsenrolled/:id" element={<StudentsEnrolled />} />
+                        <Route path="/grievancepage/:id" element={<GrievancePage />} />
                         <Route path="/dashboard"
                             element={<>
                                 <Dashboard name="Raj Sharma"
@@ -184,7 +185,7 @@ const [input, setInput] = React.useState({
                         <Route path='/alloted' element={<Alloted />} />
                         <Route path='/coursenotalloted' element={<CourseNotAlloted />} />
 
-                        <Route path='/grievancepage' element={<GrievancePage />} />
+                        {/* <Route path='/grievancepage' element={<GrievancePage />} /> */}
 
 
                         <Route path="/allcourses" element={<AllCourses

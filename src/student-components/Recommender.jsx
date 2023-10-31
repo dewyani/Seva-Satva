@@ -73,9 +73,9 @@ const Recommender = () => {
         {books ? (
           <ul>
             {books.map((book, i) => (
-              <div 
-              className='recommender--book-border'
-              key={i}>
+              <div
+                className='recommender--book-border'
+                key={i}>
                 {printBook(book)}
               </div>
             ))}
