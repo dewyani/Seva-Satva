@@ -25,7 +25,6 @@ const CreateCourse = ({input, setInput, saveHandler}) => {
      const imageUrl = URL.createObjectURL(file)
      
      console.log(file);
-    //  setImage(event.target.files[0]);
     setInput(prevInputText =>(
       {
         ...prevInputText,
