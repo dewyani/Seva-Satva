@@ -24,8 +24,8 @@ export default function NotAlloted() {
 
         <tbody>
           <tr>
-            {data.map((item) => (
-              <tr key={item.id}>
+            {data.map((item, i) => (
+              <tr key={i}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>

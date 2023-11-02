@@ -48,7 +48,7 @@ const [input, setInput] = React.useState({
     image: "",
 })
 
-    const [image, setImage] = React.useState("")
+   
     const [courses, setCourses] = React.useState([])
     const [editToggle, setEditToggle] = React.useState(null)
 
@@ -152,28 +152,7 @@ const [input, setInput] = React.useState({
                         <Route path="/registerstudent" element={<RegisterStudent />} />
                         <Route path="/studentsenrolled/:id" element={<StudentsEnrolled />} />
                         <Route path="/grievancepage/:id" element={<GrievancePage />} />
-                        <Route path="/dashboard"
-                            element={<>
-                                <Dashboard name="Raj Sharma"
-                                    uid={2021300045}
-                                    sem={1}
-                                    course="Trek"
-                                    grade="AB"
-                                    result="pass"
-                                />
-
-                                {/* <Dashboard 
-                uid={2021300043} 
-                sem={2} 
-                course="Cooking"
-                 grade="FF" 
-                 result="fail"
-                /> */}
-
-                            </>
-
-                            }
-                        />
+                        <Route path="/dashboard" element={<Dashboard />}/>
 
                         <Route path="/fillChoice" element={<FillChoice
                             courses={courses} />} />
@@ -190,7 +169,6 @@ const [input, setInput] = React.useState({
 
                         <Route path="/allcourses" element={<AllCourses
                             courses={courses}
-                            image={image}
                             handleClick={handleClick}
                         />}
                         />
