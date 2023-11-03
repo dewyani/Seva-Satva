@@ -9,7 +9,7 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Login(props) {
+export default function Login() {
     const navigate = useNavigate()
     const [redirect , setRedirect] = React.useState(false)
     const [username , setUsername] = React.useState("")
@@ -20,6 +20,7 @@ export default function Login(props) {
         forget: false
 
     })
+
 
     function handleChange(event) {
         const { type, value, checked, name } = event.target

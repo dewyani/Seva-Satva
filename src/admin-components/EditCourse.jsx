@@ -23,7 +23,7 @@ return (
                 editToggle === course.id ?
                 <CreateCourse 
                 input ={input}
-                setInput  = {setInput } 
+                setInput  = {setInput} 
                 saveHandler = {saveHandler}
                 />
                 :

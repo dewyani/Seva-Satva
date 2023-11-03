@@ -28,20 +28,20 @@ const CreateCourse = () => {
 
 
 
-  // const handleImageChange = (event) => {
-  //   const file = event.target.files[0];
-  //   const imageUrl = URL.createObjectURL(file)
-
-  //   console.log(file);
-  //   //  setImage(event.target.files[0]);
-  //   setInput(prevInputText => (
-  //     {
-  //       ...prevInputText,
-  //       image: imageUrl
-  //     }
-  //   )
-  //   )
-  // }
+  const handleImageChange = (event) =>
+  {
+     const file=event.target.files[0];
+     const imageUrl = URL.createObjectURL(file)
+     
+     console.log(file);
+    setInput(prevInputText =>(
+      {
+        ...prevInputText,
+        image: imageUrl
+      }
+    )
+    )
+  }
 
 
   // function handleChange(event) {
