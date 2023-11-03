@@ -19,7 +19,7 @@ export default function AllCourses(props) {
         setCourses(response.data.courseDocs)
       })
   }), [])
-
+ 
   // const { courses,image } = props;
   const { image } = props;
 

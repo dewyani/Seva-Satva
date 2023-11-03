@@ -42,8 +42,8 @@ const Recommender = () => {
   if (!books) {
     return (
       <div class="topnav">
-        <h2>Vote for your favourite books !! 📖📕</h2>
-        <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3>
+        <h2>Search for your favourite books !! 📖📕</h2>
+        <h3>Recommendations will be considered for Reading Book Seva Satva Course.</h3>
         <form onSubmit={handleSubmit}>
           <input
             type="text"

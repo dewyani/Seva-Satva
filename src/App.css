@@ -2,7 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  /* color: black */
+  color: black
 }
 
 /* body{
@@ -869,6 +869,7 @@ animation: gradient 3s ease infinite;
 
 .editcourses--div img{
   width: 227px;
+  border : 1px solid red;
   height: 259px;
   border-radius: 10px;
   filter: brightness(86%);

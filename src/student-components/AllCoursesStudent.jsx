@@ -8,7 +8,6 @@ import NavBar from "../student-components/NavBar";
 
 export default function AllCoursesStudent(props) {
   const { courses } = props;
-
    
   return (
     <>
