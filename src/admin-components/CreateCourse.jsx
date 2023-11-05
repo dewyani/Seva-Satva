@@ -84,7 +84,6 @@ const CreateCourse = ({input, setInput, saveHandler}) => {
                 name="instructor"
                 onChange={handleChange}
                />
-
                </div>
 
        
