@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import NavBar from './NavBar';
 
 const Recommender = () => {
 
@@ -41,6 +42,9 @@ const Recommender = () => {
 
   if (!books) {
     return (
+
+      <>
+      <NavBar/>
       <div className="recommender--outer-div">
         <form onSubmit={handleSubmit}>
           <input
@@ -49,17 +53,20 @@ const Recommender = () => {
             onChange={ev => setSeacrhParam(ev.target.value)}
             value={searchParam}
           ></input>
-          <div className="setcolor">Enter Book Name to Search Books ... </div>
+          <div >Enter Book Name to Search Books ... </div>
         </form>
       </div>
+
+      </>
     )
   }
 
   return (
     <div>
+      <NavBar/>
       <div className="recommender--outer-div">
-        <h2>Vote for your favourite books !! 📖📕</h2>
-        <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3>
+        {/* <h2>Vote for your favourite books !! 📖📕</h2> */}
+        {/* <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3> */}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -69,12 +76,13 @@ const Recommender = () => {
           ></input>
         </form>
       </div>
-      <div className='recommender--book-parent'>
+
+      <div  className='recommender--inner-div'>
         {books ? (
-          <ul>
+          <ul className='recommender--ul'>
             {books.map((book, i) => (
               <div
-                className='recommender--book-border'
+                className='recommender--ul-div'
                 key={i}>
                 {printBook(book)}
               </div>

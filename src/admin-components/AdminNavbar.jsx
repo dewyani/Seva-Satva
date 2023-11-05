@@ -23,7 +23,7 @@ export default function AdminNavBar(){
                 <h1>SATVA</h1>
                 <p>Lifting Abilities, Enlarging Perspectives</p>
             </div>
-            <ul className="navbar--ul">
+            <ul className="navbar--ul admin-navbar--ul">
                 <li><Link to="/allcourses">All Courses</Link></li>
                 <li><Link to="/editcourse">Edit Course</Link></li>
                 {/* <li><Link to="/notalloted">Not Alloted</Link></li> */}
