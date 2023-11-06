@@ -10,6 +10,7 @@ export default function AdminGrievance() {
 
     const [allGrievance, setAllGrievance] = useState([])
     const navigate = useNavigate()
+
     useEffect((() => {
 
         axios.get("http://localhost:4000/grievance/allGrievance")
@@ -28,7 +29,7 @@ export default function AdminGrievance() {
         <>
             <AdminNavBar />
             {allGrievance.map((each, i) => (
-                <div className="admingrievance--main-div">
+                <div className="admingrievance--main-div" >
                     <div className="admingrievance--sub-div" >
                         <div className="admingrievance--p-div">
                             <div>

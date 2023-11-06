@@ -83,7 +83,7 @@ export default function FillChoice(props) {
         </aside>
 
         <section className="fillchoice--section">
-          <p className="block">
+          <p className="block fillchoice--section-p">
             Courses will be alloted on first come, first serve basis
           </p>
 
@@ -105,24 +105,13 @@ export default function FillChoice(props) {
               />
             </div>
 
-            {/* <p className="fillchoice--label">Enter 3 preferences</p> */}
+            <p className="fillchoice--label">Enter 3 preferences</p>
             <div
               ref={drop}
-              className="fillchoice--input preferences"
+              className="fillchoice--input preferences fillchoice--li" 
               onChange={handleChange}
             >
-              {/* <label htmlFor="preferenceid" className="fillchoice--label">
-                  Enter 3 preferences
-                </label>  */}
-              {/* <input
-                // ref={drop} 
-                type="text"
-                id="preferenceid"
-                name="preference"
-                onChange={handleChange}
-                value={preferenceData.preference}
-                className="fillchoice--input preferences"
-              />  */}
+           
 
               {preferenceData.preference.map((element , index) => {
                 if (preferenceData.preference.length > 0) {

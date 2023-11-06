@@ -120,7 +120,7 @@
   display: flex;
   align-items: flex-end;
   list-style: none;
-  margin-left: 60.2vh
+  margin-left: 56.2vh
 }
 
 .navbar--ul li a{
@@ -147,24 +147,31 @@
 
 /*----------------- Recommender-----------------------*/
 
-.recommender--book-parent{
-  display: grid;
-  grid-template-columns: repeat(5 , 1fr) ;
+.recommender--inner-div{
+
+  display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  color: black
-  /* background-color: rgb(255, 215, 221); */
 }
 
-.recommender--book-border{
+
+.recommender--ul{
+  display: grid;
+  grid-template-columns: repeat(4 , 1fr) ;
+  grid-gap: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: black;
+  /* border: 2px solid brown; */
+  padding: 1rem;
+  width: 100%;
+}
+
+
+.recommender--ul-div{
   margin : 20px ;
   padding: 20px;
   color: black ;
   border: 1px solid red;
-}
-
-.setcolor{
-   color: black;
 }
 
 .recommender--outer-div{
@@ -176,7 +183,7 @@
 .recommender--outer-div input{
   border-radius: 10px;
   /* float: right; */
-  width: 80em;
+  width: 100%;
   padding: 6px;
   margin-top: 8px;
   margin-right: 16px;
@@ -605,13 +612,20 @@ animation: gradient 3s ease infinite; */
   margin: 15px;
 }
 
-.fillchoice--section p{
+.fillchoice--section-p{
   
   font-family: 'Rubik', sans-serif;
   font-size: 16px;
   color: #DC1313 ;
   font-weight: bold;
   margin-top: 2rem;
+
+}
+
+.fillchoice--p{
+
+  margin-top: 0;
+  color:black;
 
 }
 
@@ -645,6 +659,8 @@ animation: gradient 3s ease infinite; */
   font-weight: bold;
   display: block;
 }
+
+
 .fillchoice--input
 {
 
@@ -672,10 +688,12 @@ animation: gradient 3s ease infinite; */
   list-style: none;
   cursor: pointer;
 }
-.fillchoice--li img{
+.fillchoice--li-img{
 
   height: 43px;
   width: 105px;
+  /* width:fit-content;
+  height: fit-content; */
   display: block;
   z-index: 1;
   border-radius: 5px;
@@ -683,14 +701,46 @@ animation: gradient 3s ease infinite; */
   
 }
 
-.fillchoice--li span{
+
+.fillchoice--li-img-two{
+
+  height: 53px;
+  width: 133px;
+  /* width:fit-content;
+  height: fit-content; */
+  display: block;
+  z-index: 1;
+  border-radius: 5px;
+  filter:brightness(0.8);
+  
+}
+
+.fillchoice--li-span{
   position: absolute;
-  top: 16px;
-  left: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 16px;
   z-index: 10;
   text-align: center;
+  /* line-height: 1; */
 }
+
+
+.fillchoice--li-span-two{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* top: 25%;
+  left: 9%; */
+  font-size: 16px;
+  z-index: 10;
+  text-align: center;
+  /* line-height: 1; */
+}
+
+
 .preferences
 {
   height: 190px;
@@ -814,6 +864,11 @@ animation: gradient 3s ease infinite; */
 } */
 
 
+/* ---------------Admin Navbar---------------- */
+
+.admin-navbar--ul{
+     margin-left: 82vh;
+}
 
 
 /* -------------All Course & Edit Course------------- */
