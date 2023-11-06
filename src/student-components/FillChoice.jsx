@@ -1,15 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NavBar from "./NavBar";
+import { useEffect, useState } from "react";
 import cookingImg from "../images/cooking.png";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Drag from "./Drag";
 import { useDrop } from "react-dnd";
 import axios from "axios";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useNavigate } from "react-router-dom";
+
 
 export default function FillChoice(props) {
+
   // const { courses } = props;
   const [courses, setCourses] = useState([])
+  const [preferenceData, setPreferenceData] = useState([])
+  const [redirect  , setRedirect] = useState(false)
+  const navigate = useNavigate()
+  // const [preferenceData, setPreferenceData] = useState({
+  //   sem: "",
+  //   preference: [],
+  // });
 
   useEffect((() => {
     axios.get("http://localhost:4000/course/allAvilableCourse")
@@ -17,121 +29,175 @@ export default function FillChoice(props) {
         setCourses(response.data.courseDocs)
       })
   }), [])
+  
+  const onDragEnd = async (result) => {
+    console.log("After Dragging Course ... ")
+    console.log(result)
 
-  const [preferenceData, setPreferenceData] = React.useState({
-    sem: "",
-    preference: [],
-  });
+    let tobeSelected;
+    let isDragged = courses;
+    let selected = preferenceData;
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: "li",
-    drop: (item) => addImageToDiv(item._id),
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  }));
+    // incase destination !== preferenceData .. dont do anyhting
+    if (result.destination.droppableId === null) {
+      return;
+    }
 
-  //to check courses
-  // courses.map((course)=>{
-  //   console.log("course: \n courseid "+ course.id + "coursename: "+course.coursename )
-  // })
+    // incase source === destination in all Available course colmn .. dont do anything
+    if (result.source.droppableId === 'courses' && result.destination.droppableId === 'courses') {
+      return;
+    }
 
-  const addImageToDiv = (_id) => {
-    console.log("id " + _id);
+    // incase source === destination in pref input text field .. reorder
+    if (result.source.droppableId === 'preferenceData' && result.destination.droppableId === 'preferenceData') {
+      return;
+    }
 
-    const data = courses.filter((course) => String(_id) === String(course._id));
+    // actual setting satte logic =-------------------------------------------------------------------
 
-    setPreferenceData((prevPreferenceData) => ({
-      ...prevPreferenceData,
-      preference: [...prevPreferenceData.preference, data[0]],
-    }));
-  };
+    // remove the dragged item from all Availbale courses shown in the side
+    if (result.source.droppableId === 'courses') {
+      tobeSelected = isDragged[result.source.index]
+      isDragged.splice(result.source.index, 1)
+    }
+    // or remove it from the pref input and add back to all Availbale courses
+    else {
+      tobeSelected = selected[result.source.index]
+      selected.splice(result.source.index, 1)
+      isDragged.splice(result.source.index, 0, tobeSelected)
+    }
 
+    // adding courses in input text field of pref
+    if (result.destination.droppableId === 'preferenceData') {
+      console.log("hbfhjf")
+      selected.splice(result.destination.index, 0, tobeSelected);
+    }
 
-
-
-  function handleChange(event) {
-    const { value, name } = event.target;
-
-    setPreferenceData((prevpreferenceData) => {
-      return {
-        ...prevpreferenceData,
-        [name]: value,
-
-      };
-    });
+    console.log("Selected courses ...")
+    setPreferenceData(selected)
+    console.log(preferenceData)
   }
 
-  console.log(preferenceData)
+  const submitPrefernce = async () => {
+    // getting pref names -> student_Pref_1, student_Pref_2
+    const student_Pref = preferenceData.slice(0,3)
+    const student_Pref_1 = student_Pref[0].name;
+    const student_Pref_2 = student_Pref[1].name; 
 
-  //get the array from backend
-  React.useEffect(function () {
-    // console.log("use effect");
-  }, []);
+    console.log(student_Pref_1 , student_Pref_2)
+
+    await axios.post("http://localhost:4000/course/setAllPref" , {student_Pref_1 , student_Pref_2 } , {withCredentials : true })
+    .then((response) => {
+      alert("Form Submitted Successfully !!")
+      // console.log(response)
+      setRedirect(true)
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+  }
+
+  if (redirect){
+    navigate("/dashboard")
+  }
 
   return (
     <>
       <NavBar />
 
       <div className="fillchoice--outerdiv">
-        <aside className="fillchoice--aside">
-          <ul className="fillchoice--ul">
-            {courses.map((course) => (
-              <Drag id={course._id} name={course.name} />
-            ))}
-          </ul>
-        </aside>
+        <DragDropContext onDragEnd={onDragEnd}>
 
-        <section className="fillchoice--section">
-          <p className="block fillchoice--section-p">
-            Courses will be alloted on first come, first serve basis
-          </p>
+          <Droppable droppableId="courses">
 
-          <div className="fillchoice--div">
-            <h4>Preference form</h4>
+            {(provided) => (
+              <aside className="fillchoice--aside" {...provided.droppableProps} ref={provided.innerRef}>
+                <ul className="fillchoice--ul">
+                  {courses.map((course, index) => (
 
-            <div>
-              <label htmlFor="semid" className="fillchoice--label">
-                Sem
-              </label>
-              <input
-                type="number"
-                id="semid"
-                name="sem"
-                onChange={handleChange}
-                value={preferenceData.sem}
-                placeholder="SEM"
-                className="fillchoice--input"
-              />
+                    // console.log('hello')
+                    <Draggable draggableId={course._id} index={index}>
+                      {(provided) => (
+
+                        <li className="fillchoice--li" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+                          <img src={'http://localhost:4000/' + course.Imagefile || cookingImg} alt={course.name} />
+                          <span>{course.name}</span>
+                        </li>
+
+                      )}
+                    </Draggable>
+
+                  ))}
+                </ul>
+                {provided.placeholder}
+              </aside>
+            )}
+
+          </Droppable>
+
+          <section className="fillchoice--section">
+            <p className="block">
+              Courses will be alloted on first come, first serve basis
+            </p>
+
+            <div className="fillchoice--div">
+              <h4>Preference form</h4>
+
+              <div>
+                <label htmlFor="semid" className="fillchoice--label">
+                  Sem
+                </label>
+                <input
+                  type="number"
+                  id="semid"
+                  name="sem"
+                  // onChange={handleChange}
+                  // value={preferenceData.sem}
+                  placeholder="SEM"
+                  className="fillchoice--input"
+                />
+              </div>
+
+              <p className="fillchoice--label">Enter 3 preferences</p>
+
+              <Droppable droppableId="preferenceData">
+                {(provided) => (
+                  <div className="fillchoice--input preferences" {...provided.droppableProps} ref={provided.innerRef}>
+
+                    {preferenceData && preferenceData.map((element, index) => {
+                      if (preferenceData.length > 0) {
+                        return (
+                          <Draggable draggableId={element._id} index={index}>
+                            {(provided) => (
+
+                              <div
+                                ref={provided.innerRef}
+                                key={index}
+                                className="fillchoice--li"
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+
+                                <img className={element.name.split(" ").length < 2 ? "fillchoice--li-img" : "fillchoice--li-img-two"} src={'http://localhost:4000/' + element.Imagefile || cookingImg} alt="course cover image" />
+
+                                <span className={element.name.split(" ").length < 2 ? "fillchoice--li-span" : "fillchoice--li-span-two"} >{element.name}</span>
+
+                              </div>
+                            )}
+                          </Draggable>
+                        );
+                      }
+                    }
+                    )}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
             </div>
-
-            <p className="fillchoice--label">Enter 3 preferences</p>
-            <div
-              ref={drop}
-              className="fillchoice--input preferences fillchoice--li" 
-              onChange={handleChange}
-            >
-           
-
-              {preferenceData.preference.map((element , index) => {
-                if (preferenceData.preference.length > 0) {
-                  return (
-                    <Drag
-                      // key={element._id}
-                      id={index}
-                      // name={element.name}
-                    />
-                  );
-                }
-              }
-              )}
-
-
-            </div>
-          </div>
-          <button type="submit" className="fillchoice--button">SUBMIT</button>
-        </section>
-      </div>
+            <button type="submit" className="fillchoice--button" onClick={submitPrefernce}>SUBMIT</button>
+          </section>
+        </DragDropContext >
+      </div >
     </>
   );
 }
