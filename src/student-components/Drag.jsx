@@ -2,15 +2,14 @@ import React from "react";
 import cookingImg from "../images/cooking.png";
 import { useDrag } from "react-dnd";
 
-export default function Drag(props)
-{
+export default function Drag(props) {
 
-    const [{isDragging}, drag] = useDrag(()=> ({
-         type: "li",
-         item: {id: props.id},
-         collect: (monitor) =>({
-             isDragging:!! monitor.isDragging(),
-         }),
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: "li",
+        item: { id: props.id },
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging(),
+        }),
     }))
 
     // console.log("coursename "+props.name + " id " +props.id)

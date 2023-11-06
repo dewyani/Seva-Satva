@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React , { useEffect , useState}from "react";
 import NavBar from "./NavBar";
 import cookingImg from "../images/cooking.png";
 import { DndProvider } from "react-dnd";
@@ -47,9 +47,9 @@ export default function FillChoice(props) {
     }));
   };
 
+  
 
-
-
+  
   function handleChange(event) {
     const { value, name } = event.target;
 
@@ -57,7 +57,7 @@ export default function FillChoice(props) {
       return {
         ...prevpreferenceData,
         [name]: value,
-
+        
       };
     });
   }
@@ -83,7 +83,7 @@ export default function FillChoice(props) {
         </aside>
 
         <section className="fillchoice--section">
-          <p className="block fillchoice--section-p">
+          <p className="block">
             Courses will be alloted on first come, first serve basis
           </p>
 
@@ -105,29 +105,40 @@ export default function FillChoice(props) {
               />
             </div>
 
-            <p className="fillchoice--label">Enter 3 preferences</p>
+            {/* <p className="fillchoice--label">Enter 3 preferences</p> */}
             <div
               ref={drop}
-              className="fillchoice--input preferences fillchoice--li" 
+              className="fillchoice--input preferences"
               onChange={handleChange}
             >
-           
+              {/* <label htmlFor="preferenceid" className="fillchoice--label">
+                  Enter 3 preferences
+                </label>  */}
+              {/* <input
+                // ref={drop} 
+                type="text"
+                id="preferenceid"
+                name="preference"
+                onChange={handleChange}
+                value={preferenceData.preference}
+                className="fillchoice--input preferences"
+              />  */}
 
               {preferenceData.preference.map((element) => {
                 if (preferenceData.preference.length > 0)
                 { 
                   return (
                     <Drag
-                      key={element.id}
-                      id={element.id}
-                      name={element.coursename}
+                      key={element._id}
+                      id={element._id}
+                      name={element.name}
                     />
                   );
                 }
               }
               )}
 
-
+             
             </div>
           </div>
           <button type="submit" className="fillchoice--button">SUBMIT</button>

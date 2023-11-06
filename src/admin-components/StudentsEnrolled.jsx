@@ -21,8 +21,7 @@ export default function StudentsEnrolled() {
 
     return (
         <div>
-            <h1>List Of Students Enrolled </h1>
-            <h2>Course Name : {requiredCourse.name}</h2>
+            <h1>{requiredCourse.name} Classroom 👨🏼‍🏫👩🏼‍🏫 </h1>
             <h2>Course Incharge : Prof. {requiredCourse.prof_Incharge}</h2>
             <h2>Course Intake Capacity : {requiredCourse.intake_Capacity}</h2>
             <h2>Number of Students Currently Enrolled : {requiredCourse.current_Enrolled_Count}</h2>

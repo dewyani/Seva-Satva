@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios'
 
-export default function Dashborad() {
+export default function Dashborad(props) {
 
   const [userDetails, setUserDetails] = useState()
 

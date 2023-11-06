@@ -13,13 +13,16 @@ const port = process.env.PORT
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
 app.use(cookieParser())
+// __dirname == file path of backend folder 
+// on this we append /uploads
+app.use("/uploads", express.static((__dirname + '/uploads')))
 
 app.get("/", (req, res) => {
     res.json({ status: "From / [get] , success" })
 })
 
 // routes
-app.use('/course', courseRouter);
+app.use('/course',  courseRouter);
 app.use('/grievance', grievanceRouter);
 app.use('/auth' , userRouter)
 
