@@ -150,7 +150,11 @@ const [input, setInput] = React.useState({
                         <Route path="/registerstudent" element={<RegisterStudent />} />
                         <Route path="/studentsenrolled/:id" element={<StudentsEnrolled />} />
                         <Route path="/grievancepage/:id" element={<GrievancePage />} />
-                        <Route path="/dashboard" element={<Dashboard />}/>
+                        <Route path="/dashboard" element={<Dashboard 
+                            sem = {5}
+                            grade = {"AA"}
+                            result = {"pass"}
+                            />}/>
 
                         <Route path="/fillChoice" element={<FillChoice
                             courses={courses} />} />

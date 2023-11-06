@@ -1,17 +1,34 @@
 const jwt = require("jsonwebtoken")
 const Course = require("../model/Course")
 const User = require("../model/User")
+const fs = require('fs');
 
 // added by admin
 const addCourse = async (req , res) => {
     const { name, prof_Incharge, intake_Capacity } = req.body
+
+    console.log("from controler >> Course.js ")
+    console.log(req.file)
+    // even tho we sent Imagefile via req.body , it wont be acessible via req.body
+    // to access it ; saved it locally in ./uploads >> grab filepath from here .. save the filepath from here
+    console.log(req.body)
+
+    // to grab ext + append to image file in uploads 
+    const { originalname, path } = req.file;
+    const parts = originalname.split('.');
+    const ext = parts[parts.length - 1];
+    const newPath = path + '.' + ext;
+    fs.renameSync(path, newPath);
+
+
     const courseDoc = await Course.create({
         name,
         prof_Incharge,
-        intake_Capacity
+        intake_Capacity ,
+        Imagefile : newPath
     })
         .then((response) => {
-            res.json({ status: "From /addCourse [post] , successfully added course in DB", courseDoc: response })
+            res.json({ status: "From /addCourse [post] , successfully added course in DB", courseDoc: response })  
         })
         .catch((error) => {
             res.status(400).json({ status: "From /addCourse [post] , course not added in DB", "error": error.message })
@@ -70,7 +87,7 @@ const allotCourse = async (req , res) => {
         const intake_Capacity = courseDoc.intake_Capacity
         const current_Applied_Count = courseDoc.applied.length
         const current_Enrolled_Count = courseDoc.current_Enrolled_Count
-
+   
         if (current_Enrolled_Count < intake_Capacity) {
 
             // number of students whose data is to be put in enroled

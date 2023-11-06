@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React , { useEffect , useState}from "react";
 import NavBar from "./NavBar";
 import cookingImg from "../images/cooking.png";
 import { DndProvider } from "react-dnd";
@@ -47,9 +47,9 @@ export default function FillChoice(props) {
     }));
   };
 
+  
 
-
-
+  
   function handleChange(event) {
     const { value, name } = event.target;
 
@@ -57,12 +57,12 @@ export default function FillChoice(props) {
       return {
         ...prevpreferenceData,
         [name]: value,
-
+        
       };
     });
   }
-
-  console.log(preferenceData)
+ 
+ console.log(preferenceData) 
 
   //get the array from backend
   React.useEffect(function () {
@@ -124,20 +124,21 @@ export default function FillChoice(props) {
                 className="fillchoice--input preferences"
               />  */}
 
-              {preferenceData.preference.map((element , index) => {
-                if (preferenceData.preference.length > 0) {
+              {preferenceData.preference.map((element) => {
+                if (preferenceData.preference.length > 0)
+                { 
                   return (
                     <Drag
-                      // key={element._id}
-                      id={index}
-                      // name={element.name}
+                      key={element._id}
+                      id={element._id}
+                      name={element.name}
                     />
                   );
                 }
               }
               )}
 
-
+             
             </div>
           </div>
           <button type="submit" className="fillchoice--button">SUBMIT</button>

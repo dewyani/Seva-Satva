@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import cookingImg from "../images/cooking.png";
 import addImg from "../images/add.png";
 import updateImg from "../images/update.png";
@@ -13,34 +12,50 @@ export default function AllCourses(props) {
   const [courses, setCourses] = useState([])
   const navigate = useNavigate()
 
-  useEffect((() => {
+  useEffect((() => { 
     axios.get("http://localhost:4000/course/allCourse")
       .then((response) => {
         setCourses(response.data.courseDocs)
       })
   }), [])
- 
+
+  const allotCourseHandle = async (courseName) => {      
+    const name = courseName
+    await axios.post("http://localhost:4000/course/allotCourse" , {name})
+    .then((response) => { 
+      console.log(response)
+      alert(`Students Alloted Course ${courseName} Successfully !!`)
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+  }
+
   // const { courses,image } = props;
   const { image } = props;
 
   return (
     <>
       < AdminNavBar />
-      <main className="allcourse--main">
-        {
-          courses.map((course) => (
-            <div className="allcourse--div" key={course._id}>
-              <img src={image || cookingImg} alt="cooking image" />
-              <div className="allcourse--innerdiv">
-                <hr />
-                <p className="bold">{course.name}</p>
-                <p>Intake capacity: {course.intake_Capacity}</p>
-                <p>Prof. {course.prof_Incharge}</p>
-                <button><Link to={`/studentsenrolled/${course._id}`}>Click Here</Link></button>
+      <div className="allcourse">
+        <main className="allcourse--main">
+          {
+            courses.map((course) => (
+              <div className="allcourse--div" key={course._id}>
+                <img src={'http://localhost:4000/'+ course.Imagefile || cookingImg} alt="course cover image" />
+                <div className="allcourse--innerdiv">
+                  <hr />
+                  <p className="bold">{course.name}</p>
+                  <p>Intake capacity: {course.intake_Capacity}</p>
+                  {/* <p>Current Enrolled : {course.current_Enrolled_Count}</p>  */}
+                  <p>Prof. {course.prof_Incharge}</p>
+                  <button><Link to={`/studentsenrolled/${course._id}`}>Course Details</Link></button>
+                  <button onClick={()=> allotCourseHandle(course.name)}>Allot Students</button>
+                </div>
               </div>
-            </div>
-          ))}
-      </main>
+            ))}
+        </main>
+      </div>
     </>
   );
 }

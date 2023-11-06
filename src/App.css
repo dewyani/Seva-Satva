@@ -366,7 +366,7 @@ position: absolute;
    font-weight: 12px;
    justify-content: center;
    align-items: center;
-   /* background-image: linear-gradient(90deg, #ffffff,#e2a4a4, #e47c7c, #f0d8d8);
+   /* ===background-image: linear-gradient(90deg, #ffffff,#e2a4a4, #e47c7c, #f0d8d8);
 background-size: 400% 400%;
 animation: gradient 3s ease infinite; */
 }
@@ -628,6 +628,7 @@ animation: gradient 3s ease infinite; */
 
 .fillchoice--aside{
    padding: 2rem 1rem;
+   /* background-color: blue; */
   
 }
 
@@ -816,14 +817,20 @@ animation: gradient 3s ease infinite; */
 
 
 /* -------------All Course & Edit Course------------- */
+.allcourse{
+  display:grid;
+}
+
 .allcourse--main{  
   color: white;
-  padding: 74px 39px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin:auto;
+  padding: 74px ;
+  display: grid;
+  gap : 10em;
+  grid-template-columns: repeat(4, auto);
+  /* align-items: center;
+  justify-content: space-between; */
+  /* flex-wrap: wrap; */
+  /* margin: 50px ; */
   box-sizing: border-box;
   /* border: 2px solid sienna; */
 }
@@ -887,7 +894,7 @@ animation: gradient 3s ease infinite; */
   font-family: 'Istok Web',sans-serif;
   z-index: 10;
   position: absolute;
-  top: 175px;
+  top: 120px;
   left: 13px;
   opacity: 88%;
 }
@@ -909,13 +916,14 @@ animation: gradient 3s ease infinite; */
   background-color: white;
   margin: 3px;
   border-radius: 10px;
+  color: red;
+  font-weight: 700;
 }
-.allcourse--innerdiv button a{ 
 
+.allcourse--innerdiv button a{ 
   color: red;
   font-weight: 700;
   text-decoration: none;
-
 }
 
 .allcourse--bottom--div{
@@ -951,6 +959,21 @@ padding:  7px 9px;
 border-radius: 5px;
 color: white;
 
+}
+
+.create-course_bg{
+  margin: 0;
+  padding: 0;
+  height: 50rem;
+  width: 90vw;
+  background: rgb(246,246,247);
+  background: linear-gradient(90deg, rgba(246,246,247,1) 7%, rgba(253,168,176,1) 96%, rgba(255,147,156,1) 100%); 
+}
+
+.create-course__flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
