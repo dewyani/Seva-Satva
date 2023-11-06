@@ -61,7 +61,7 @@ const profile = async (req, res) => {
         if (err) {
             res.status(400).json("JWT ERROR");
             throw err;
-        }
+        } 
         // info includes our payload sent [username + id]
         res.json({ status: "from /profile [post]", info });
     });

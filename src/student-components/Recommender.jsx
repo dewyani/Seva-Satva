@@ -44,18 +44,18 @@ const Recommender = () => {
     return (
 
       <>
-      <NavBar/>
-      <div className="recommender--outer-div">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Search.."
-            onChange={ev => setSeacrhParam(ev.target.value)}
-            value={searchParam}
-          ></input>
-          <div >Enter Book Name to Search Books ... </div>
-        </form>
-      </div>
+        <NavBar />
+        <div className="recommender--outer-div">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Search.."
+              onChange={ev => setSeacrhParam(ev.target.value)}
+              value={searchParam}
+            ></input>
+            <div >Enter Book Name to Search Books ... </div>
+          </form>
+        </div>
 
       </>
     )
@@ -63,7 +63,7 @@ const Recommender = () => {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <div className="recommender--outer-div">
         {/* <h2>Vote for your favourite books !! 📖📕</h2> */}
         {/* <h3>Books with highest votes will be selected for Reading Book Seva Satva Course.</h3> */}
@@ -77,7 +77,7 @@ const Recommender = () => {
         </form>
       </div>
 
-      <div  className='recommender--inner-div'>
+      <div className='recommender--inner-div'>
         {books ? (
           <ul className='recommender--ul'>
             {books.map((book, i) => (
