@@ -1,31 +1,46 @@
-import React from "react";
+import React , { useState , useEffect}from "react";
 import { useNavigate } from "react-router-dom";
 import cookingImg from "../images/cooking.png";
 import addImg from "../images/add.png";
 import updateImg from "../images/update.png";
 import deleteImg from "../images/delete.png";
 import NavBar from "../student-components/NavBar";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function AllCoursesStudent(props) {
-  const { courses } = props;
+  const [courses, setCourses] = useState([])
 
-   
+  useEffect((() => {
+    axios.get("http://localhost:4000/course/allAvilableCourse")
+      .then((response) => {
+        setCourses(response.data.courseDocs)
+      })
+  }), [])
+
+  // const { courses } = props;
+
   return (
     <>
-      <NavBar/>
-      <main className="allcourse--main">
-        {courses.map((course) => (
-          <div className="allcourse--div" key={course.id}>
-            <img src={cookingImg} alt="cooking image" />
-            <div className="allcourse--innerdiv">
-              <hr />
-              <p className="bold">{course.coursename}</p>
-              <p>Intake capacity: {course.intake}</p>
-              <p>{course.instructor}</p>
-            </div>
-          </div>
-        ))}
-      </main>
+      <NavBar />
+      <div className="allcourse">
+        <main className="allcourse--main">
+          {
+            courses.map((course) => (
+              <div className="allcourse--div" key={course._id}>
+                <img src={'http://localhost:4000/' + course.Imagefile || cookingImg} alt="course cover image" />
+                <div className="allcourse--innerdiv">
+                  <hr />
+                  <p className="bold">{course.name}</p>
+                  <p>Intake capacity: {course.intake_Capacity}</p> 
+                  <p>Current Enrolled : {course.current_Enrolled_Count}</p> 
+                  <p>Prof. {course.prof_Incharge}</p>
+                  <button><Link to={`/studentsenrolled/${course._id}`}>Course Details</Link></button>
+                </div>
+              </div>
+            ))}
+        </main>
+      </div>
     </>
   );
 }

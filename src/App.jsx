@@ -28,14 +28,12 @@ import StudentsEnrolled from './admin-components/StudentsEnrolled'
 
 import { nanoid } from "nanoid"
 
-
 import cookingImg from "./images/cooking.png"
 import AllCoursesStudent from './student-components/AllCoursesStudent'
 import GrievancePage from './admin-components/GrievancePage'
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-
 
 
 function App() {
@@ -152,7 +150,11 @@ const [input, setInput] = React.useState({
                         <Route path="/registerstudent" element={<RegisterStudent />} />
                         <Route path="/studentsenrolled/:id" element={<StudentsEnrolled />} />
                         <Route path="/grievancepage/:id" element={<GrievancePage />} />
-                        <Route path="/dashboard" element={<Dashboard />}/>
+                        <Route path="/dashboard" element={<Dashboard 
+                            sem = {5}
+                            grade = {"AA"}
+                            result = {"pass"}
+                            />}/>
 
                         <Route path="/fillChoice" element={<FillChoice
                             courses={courses} />} />
