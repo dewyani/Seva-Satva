@@ -9,27 +9,41 @@ import { useDrop } from "react-dnd";
 import axios from "axios";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 
 export default function FillChoice(props) {
 
-  // const { courses } = props;
   const [courses, setCourses] = useState([])
   const [preferenceData, setPreferenceData] = useState([])
-  const [redirect  , setRedirect] = useState(false)
+  const [userPrevCourses, setUserPrevCourses] = useState([])
+  const [redirect, setRedirect] = useState(false)
   const navigate = useNavigate()
-  // const [preferenceData, setPreferenceData] = useState({
-  //   sem: "",
-  //   preference: [],
-  // });
+
+  // getting token from browser cookie
+  const tokenCookie = document.cookie.match(/token=([^;]+)/)?.[1];
+  // decoding jwt token to get og payloads
+  const decodedToken = jwtDecode(tokenCookie);
 
   useEffect((() => {
     axios.get("http://localhost:4000/course/allAvilableCourse")
       .then((response) => {
         setCourses(response.data.courseDocs)
       })
+
+    // getting loggedin user data
+    const username = decodedToken.username
+    axios.post("http://localhost:4000/auth/searchUser", { username })
+      .then((response) => {
+        // console.log(response.data.userDoc.prev_Taken_Courses)
+        setUserPrevCourses(response.data.userDoc.prev_Taken_Courses)
+      })
+      .catch((error) => {
+        console.log(error.message)
+      })
+
   }), [])
-  
+
   const onDragEnd = async (result) => {
     console.log("After Dragging Course ... ")
     console.log(result)
@@ -75,29 +89,48 @@ export default function FillChoice(props) {
 
     console.log("Selected courses ...")
     setPreferenceData(selected)
-    console.log(preferenceData)
+    // console.log(preferenceData)
   }
 
   const submitPrefernce = async () => {
-    // getting pref names -> student_Pref_1, student_Pref_2
-    const student_Pref = preferenceData.slice(0,3)
-    const student_Pref_1 = student_Pref[0].name;
-    const student_Pref_2 = student_Pref[1].name; 
+    let allowSubmit = true
+    // console.log("Previously Enrolled Courses ... ")
+    // console.log(userPrevCourses)
 
-    console.log(student_Pref_1 , student_Pref_2)
+    // if students new pref has prev_allicated_course --> error
+    for (let element of preferenceData) {
+      element = element.name
+      if (userPrevCourses.includes(element)) {
+        // console.log("Found Match !")
+        allowSubmit = false;
+      }
+    }
 
-    await axios.post("http://localhost:4000/course/setAllPref" , {student_Pref_1 , student_Pref_2 } , {withCredentials : true })
-    .then((response) => {
-      alert("Form Submitted Successfully !!")
-      // console.log(response)
-      setRedirect(true)
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
+    if (allowSubmit) {
+
+      // getting pref names -> student_Pref_1, student_Pref_2
+      const student_Pref = preferenceData.slice(0, 3)
+      const student_Pref_1 = student_Pref[0].name;
+      const student_Pref_2 = student_Pref[1].name;
+
+      console.log(student_Pref_1, student_Pref_2)
+
+      await axios.post("http://localhost:4000/course/setAllPref", { student_Pref_1, student_Pref_2 }, { withCredentials: true })
+        .then((response) => {
+          alert("Form Submitted Successfully !!")
+          // console.log(response)
+          setRedirect(true)
+        })
+        .catch((error) => {
+          console.log(error.message)
+        })
+    }
+    else {
+      alert("Course that you have selected has been allocated to you in previous semester.Choose a course which is not allocated Previously !!!!")
+    }
   }
 
-  if (redirect){
+  if (redirect) {
     navigate("/dashboard")
   }
 
