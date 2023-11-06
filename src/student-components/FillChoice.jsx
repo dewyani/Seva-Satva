@@ -54,7 +54,7 @@ export default function FillChoice(props) {
     });
   }
  
- console.log(preferenceData) 
+  console.log(preferenceData) 
 
   //get the array from backend
   React.useEffect(function () {
@@ -104,13 +104,13 @@ export default function FillChoice(props) {
               onChange={handleChange}
             >
            
-
-              {preferenceData.preference.map((element) => {
+              
+              {preferenceData.preference.map((element,i) => {
                 if (preferenceData.preference.length > 0)
                 { 
                   return (
                     <Drag
-                      key={element.id}
+                      key={i}
                       id={element.id}
                       name={element.coursename}
                     />

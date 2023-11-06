@@ -24,13 +24,19 @@ export default function AdminGrievance() {
             })
     }), [])
 
+    function handleClick(id)
+    {
+        navigate(`/grievancepage/${id}`)
+    }
+
     return (
 
         <>
             <AdminNavBar />
+            <div className="admingrievance--outermost-div">
+            <div className="admingrievance--main-div" >
             {allGrievance.map((each, i) => (
-                <div className="admingrievance--main-div" >
-                    <div className="admingrievance--sub-div" >
+                    <div className="admingrievance--sub-div"  onClick={()=>handleClick(each._id)}>
                         <div className="admingrievance--p-div">
                             <div>
                                 <p>{each.query}</p>
@@ -40,9 +46,12 @@ export default function AdminGrievance() {
                             </div>
                         </div>
                     </div>
-                    <button><Link to={`/grievancepage/${each._id}`}>Expand Grievance</Link></button>
-                </div>
-            ))}
+                    //  <button><Link to={`/grievancepage/${each._id}`}>Expand Grievance</Link></button> 
+
+                    ))}
+
+            </div>
+            </div>
         </>
     )
 }
