@@ -9,12 +9,14 @@ import AdminNavBar from './AdminNavbar'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 
 export default function EditCourse({ editToggle, input, saveHandler, setInput, editHandler }) {
 
     const [courses, setCourses] = useState([])
     const navigate = useNavigate()
+    const {tusiKyaKrRaheHo} = useParams()
 
     useEffect((() => {
         axios.get("http://localhost:4000/course/allCourse")
@@ -35,9 +37,20 @@ export default function EditCourse({ editToggle, input, saveHandler, setInput, e
             })
     }
 
-    const deleteHandler = (id) => {
-        const newcourses = courses.filter(n => n._id !== id)
-        setCourses(newcourses)
+    const deleteHandler = async (id) => {
+        const tusiKyaKrRaheHo = id 
+        console.log(tusiKyaKrRaheHo)
+        await axios.post(`http://localhost:4000/course/deleteCourse/${tusiKyaKrRaheHo}`)
+        .then((response) => { 
+            console.log(response)
+            alert(`${response.data.courseDoc.name} Course Deleted Successfully !`)
+            const newCourseList = courses.filter((c) => c._id !== id) 
+            setCourses(newCourseList)
+            // console.log(response)
+        })
+        .catch((error) => {
+            console.log(error.message)
+        })
     }
 
 
@@ -91,11 +104,11 @@ export default function EditCourse({ editToggle, input, saveHandler, setInput, e
                                 {/* <p>Current Enrolled : {course.current_Enrolled_Count}</p>  */}
                                 <p>Prof. {course.prof_Incharge}</p>
                                 <button><Link to={`/studentsenrolled/${course._id}`}>Course Details</Link></button>
-                               
+
                                 <button onClick={() => allotCourseHandle(course.name)}>Allot Students</button>
                                 <div className="allcourse--bottom--div">
-                                <button onClick={() => deleteHandler(course._id)}><img src={deleteImg} /></button>
-                              </div>
+                                    <button onClick={() => deleteHandler(course._id)}><img src={deleteImg} /></button>
+                                </div>
                             </div>
                         </div>
                     ))}
