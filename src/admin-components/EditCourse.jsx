@@ -39,10 +39,8 @@ export default function EditCourse({ editToggle, input, saveHandler, setInput, e
 
     const deleteHandler = async (id) => {
         const tusiKyaKrRaheHo = id 
-        console.log(tusiKyaKrRaheHo)
         await axios.post(`http://localhost:4000/course/deleteCourse/${tusiKyaKrRaheHo}`)
         .then((response) => { 
-            console.log(response)
             alert(`${response.data.courseDoc.name} Course Deleted Successfully !`)
             const newCourseList = courses.filter((c) => c._id !== id) 
             setCourses(newCourseList)
