@@ -166,11 +166,20 @@ const selectedCourse = async (req , res) => {
     res.json({ path: "From /allCourse [get] , successfully listing all courses", courseDocs })
 }
 
+// delete course basedon its id
+const deleteCourse = async (req , res) => {
+    const {tusiKyaKrRaheHo} = req.params  
+    const courseDoc = await Course.findByIdAndDelete(tusiKyaKrRaheHo)
+    // courseDoc return the deleted course !!
+    res.status(200).json({path : "From /deleteCourse [delete] , successfully deleted course", courseDoc})
+}
+
 module.exports = { 
     addCourse,
     setAllPref,
     allotCourse , 
     allAvilableCourse , 
     allCourse , 
-    selectedCourse
+    selectedCourse , 
+    deleteCourse
 }

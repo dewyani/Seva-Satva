@@ -11,12 +11,15 @@ export default function StudentsEnrolled() {
         axios.get(`http://localhost:4000/course/selectedCourse/${id}`)
             .then((response) => {
                 setRequiredCourse(response.data.courseDocs)
-                console.log("Successfully set Required Course")
+                console.log(response.data.courseDocs)
+                // console.log("Successfully set Required Course")
             });
     }, [])
 
     if (!requiredCourse) {
-        return ""
+        return (
+            <div>No Courses Here !!</div>
+        )
     }
 
     return (
