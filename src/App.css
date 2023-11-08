@@ -797,7 +797,7 @@ animation: gradient 3s ease infinite; */
 }
 
 
-/* -----------Students CourseNotAlloted---------- */
+/* -----------Students NotAlloted---------- */
 
 .wrapper{
   background-color: #FAF8EE;
@@ -814,6 +814,7 @@ animation: gradient 3s ease infinite; */
   margin:4rem 21rem;
   margin-bottom: 5px;
 }
+
 .container
 {
   border:1px solid black ;
@@ -905,40 +906,39 @@ animation: gradient 3s ease infinite; */
 
 
 /* -------------All Course & Edit Course------------- */
-.allcourse{
-  display:grid;
-}
+
 
 .allcourse--main{  
   color: white;
   padding: 74px ;
-  display: grid;
+  /* display: grid;
   gap : 10em;
-  grid-template-columns: repeat(4, auto);
-  /* align-items: center;
-  justify-content: space-between; */
-  /* flex-wrap: wrap; */
-  /* margin: 50px ; */
+  grid-template-columns: repeat(4, auto); */
+  display: flex;
+  align-items: center;
+  justify-content: space-around; 
+  flex-wrap: wrap;
+  /* margin: 40px ; */
   box-sizing: border-box;
   /* border: 2px solid sienna; */
 }
 
-.allcourse--main :hover{
+/* .allcourse--main :hover{
 
   transform:scale(1.005);
   transition-timing-function: linear;
   transition: transform 0.5s;
   cursor: pointer;
-}
+} */
 
 
 .allcourse--div {
 
   position: relative;
-  margin: 9px 33px;
-  /* border: 5px solid red ; */
-  height: 10em;
-  width: 10em;
+  margin: 21px 33px;
+  /* border: 2px solid red ; */
+  /* height: 10em;
+  width: 10em; */
 
 }
 
@@ -947,30 +947,34 @@ animation: gradient 3s ease infinite; */
   margin: 9px 33px;
 }
 
-
-.allcourse--div :hover{
+/* 
+ .allcourse--div :hover{
 
   transform:scale(1.005);
-  /* transition: transform 0.5s; */
+  transition: transform 0.5s; 
   cursor: pointer;
+}  */
+
+.allcourse--innerdiv p{
+  
+    padding-left: 4px;
 }
 
 
-.allcourse--div img {
-  width: 240px;
-  height: 300px;
+.allcourse--div-img {
+  width: 229px;
+  height: 250px;
   border-radius: 10px;
-  /* filter: brightness(86%); */
+  filter: brightness(70%);
   z-index: -1;
   opacity: 0.85;
 }
 
 .editcourses--div img{
   width: 227px;
-  border : 1px solid red;
   height: 259px;
   border-radius: 10px;
-  filter: brightness(86%);
+  filter: brightness(70%);
   z-index: -1;
 }
 
@@ -982,7 +986,7 @@ animation: gradient 3s ease infinite; */
   font-family: 'Istok Web',sans-serif;
   z-index: 10;
   position: absolute;
-  top: 120px;
+  top: 60px;
   left: 13px;
   opacity: 88%;
 }
@@ -994,24 +998,53 @@ animation: gradient 3s ease infinite; */
    background: white;
    border: none;
    opacity: 85%;
+   margin: 1rem 0rem;
    
 }
 
 
 .allcourse--innerdiv button{
 
-  padding: 7px;
-  background-color: white;
-  margin: 3px;
-  border-radius: 10px;
-  color: red;
+  /* padding: 1rem;
+ 
+  border-radius: 20px;
   font-weight: 700;
+  border: none;
+  background-color: #4391D9;
+  color: white;
+  width: 6rem;
+  height: 2rem; */
+
+  background-color:  #3097D1;
+  margin: 3px;
+border: none;
+padding:  8px 9px;
+border-radius: 10px;
+margin: 0.5rem;
+color: white;
+width: 5rem;
+opacity: 100%;
+box-shadow: 2px 2px 4px #201919;
+cursor: pointer;
+}
+
+.allcourse--innerdiv button:hover {
+  /* background-color: #2980b9;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  
+  
+  background-color: #376980;
+  transform-origin: left;
+  transition: all 0.8s;
+  
 }
 
 .allcourse--innerdiv button a{ 
-  color: red;
+  color: white;
   font-weight: 700;
   text-decoration: none;
+  text-align: center;
 }
 
 .allcourse--bottom--div{
@@ -1023,15 +1056,13 @@ animation: gradient 3s ease infinite; */
   
 }
 
-.allcourse--bottom--div button{
-  background: none;
-  border: none;
-}
 
 .allcourse--bottom--div img{
     height: 25px;
     width: 25px;
-    margin-left: 5px;
+    /* margin: 1rem; */
+    /* margin-left: 5px; */
+
 }
 
 
@@ -1040,12 +1071,19 @@ animation: gradient 3s ease infinite; */
   font-weight: bold;
 }
 
+.allcourse--innerdiv input{
+
+  padding: 2px;
+  margin: 2px;
+}
+
 .createcourse--button{
 background-color:  #3097D1;
 border: none;
 padding:  7px 9px;
 border-radius: 5px;
 color: white;
+cursor: pointer;
 
 }
 
@@ -1062,6 +1100,29 @@ color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.spacing{
+  top: 120px;
+  left: 13px;
+}
+
+.student--allcourses-img{
+
+  width: 224px;
+  height: 280px;
+  border-radius: 10px;
+  filter: brightness(70%);
+  z-index: -1;
+  opacity: 0.85;
+}
+
+.student--allcourses-img :hover{
+  
+  
+  transform:scale(1.005);
+  transition: transform 0.5s; 
+  cursor: pointer;
 }
 
 
@@ -1219,8 +1280,6 @@ color: white;
 .notalloted--table{
     border: 1px solid black;
 }
-
-
 
 
 
