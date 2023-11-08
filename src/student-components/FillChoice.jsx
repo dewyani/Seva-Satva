@@ -153,8 +153,8 @@ export default function FillChoice(props) {
                       {(provided) => (
 
                         <li className="fillchoice--li" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-                          <img src={'http://localhost:4000/' + course.Imagefile || cookingImg} alt={course.name} />
-                          <span>{course.name}</span>
+                          <img className={course.name.split(" ").length < 2 ? "fillchoice--li-img" : "fillchoice--li-img-two"} src={'http://localhost:4000/' + course.Imagefile || cookingImg} alt={course.name} />
+                          <span className={course.name.split(" ").length < 2 ? "fillchoice--li-span" : "fillchoice--li-span-two"}>{course.name}</span>
                         </li>
 
                       )}
@@ -206,14 +206,14 @@ export default function FillChoice(props) {
                               <div
                                 ref={provided.innerRef}
                                 key={index}
-                                className="fillchoice--li"
+                                className="fillchoice--li fillchoice-draggable-li"
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                               >
 
                                 <img className={element.name.split(" ").length < 2 ? "fillchoice--li-img" : "fillchoice--li-img-two"} src={'http://localhost:4000/' + element.Imagefile || cookingImg} alt="course cover image" />
 
-                                <span className={element.name.split(" ").length < 2 ? "fillchoice--li-span" : "fillchoice--li-span-two"} >{element.name}</span>
+                                <span className={element.name.split(" ").length < 2 ? "fillchoice--draggable-span" : "fillchoice--draggable-span-two"} >{element.name}</span>
 
                               </div>
                             )}

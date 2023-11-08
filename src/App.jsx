@@ -103,7 +103,10 @@ const [input, setInput] = React.useState({
     const deleteHandler = (id) => {
         const newcourses = courses.filter(n => n.id !== id)
         setCourses(newcourses)
+        
     }
+
+    console.log("after deleting: "+ courses);
 
         //you made this function
         function handleClick(id)

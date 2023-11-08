@@ -23,7 +23,7 @@ export default function StudentsEnrolled() {
     }
 
     return (
-        <div>
+        <div style={{color:"black"}}>
             <h1>{requiredCourse.name} Classroom 👨🏼‍🏫👩🏼‍🏫 </h1>
             <h2>Course Incharge : Prof. {requiredCourse.prof_Incharge}</h2>
             <h2>Course Intake Capacity : {requiredCourse.intake_Capacity}</h2>

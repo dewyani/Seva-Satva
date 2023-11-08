@@ -33,7 +33,8 @@ export default function Dashborad(props) {
   return (
     <>
       <NavBar />
-
+{/* 
+      <div className='dashboard--centre'> */}
       <main className='dashboard--main'>
         <div className='dashboard--first-div'>
           <h4>Name: {decodedToken.username}</h4>
@@ -44,7 +45,7 @@ export default function Dashborad(props) {
         <div>
           {
             userDetails ? (
-              <div>
+              <div className='dashboard--div'>
                 {
                   userDetails.prev_Taken_Courses.map((course, i) => (
                     <div key={i} className='dashboard--second-div'>
@@ -64,8 +65,8 @@ export default function Dashborad(props) {
               <div>Loading User Details .. </div>
             )}
         </div>
-        {/* </div> */}
       </main>
+        {/* </div> */}
 
     </>
   )
