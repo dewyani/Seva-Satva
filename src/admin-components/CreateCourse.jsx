@@ -97,7 +97,7 @@ const CreateCourse = () => {
           <div className="editcourses--div">
 
             {/* <div onClick={handleImageClick} style={{ border: "2px solid red" }}> */}
-            <div style={{ border: "2px solid red" }}>
+            <div >
 
               {image ? <img src={"../images/" + image[0].name} alt="" /> : <img src={uploadImg} alt="" />}
               {image && console.log("../images/" + image[0].name)}

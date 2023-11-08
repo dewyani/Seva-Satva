@@ -37,25 +37,26 @@ export default function AllCourses(props) {
   return (
     <>
       < AdminNavBar />
-      <div className="allcourse">
+   
         <main className="allcourse--main">
           {
             courses.map((course) => (
               <div className="allcourse--div" key={course._id}>
-                <img src={'http://localhost:4000/'+ course.Imagefile || cookingImg} alt="course cover image" />
+                <img className="allcourse--div-img"src={'http://localhost:4000/'+ course.Imagefile || cookingImg} alt="course cover image" />
                 <div className="allcourse--innerdiv">
-                  <hr />
+                  
                   <p className="bold">{course.name}</p>
                   <p>Intake capacity: {course.intake_Capacity}</p>
                   {/* <p>Current Enrolled : {course.current_Enrolled_Count}</p>  */}
-                  <p>Prof. {course.prof_Incharge}</p>
-                  <button><Link to={`/studentsenrolled/${course._id}`}>Course Details</Link></button>
-                  <button onClick={()=> allotCourseHandle(course.name)}>Allot Students</button>
+                  <p>Incharge: {course.prof_Incharge}</p>
+                  <hr />
+                  <button ><Link to={`/studentsenrolled/${course._id}`}>Details</Link></button>
+                  <button onClick={()=> allotCourseHandle(course.name)}>Allot</button>
                 </div>
               </div>
             ))}
         </main>
-      </div>
+    
     </>
   );
 }
