@@ -11,10 +11,10 @@ export default function Dashborad(props) {
   const tokenCookie = document.cookie.match(/token=([^;]+)/)?.[1];
   // decoding jwt token to get og payloads
   const decodedToken = jwtDecode(tokenCookie);
+  // console.log(decodedToken)
 
   useEffect((() => {
-    console.log("insidiuos")
-    console.log(decodedToken.username)
+    // console.log(decodedToken.username)
     const username = decodedToken.username
     axios.post("http://localhost:4000/auth/searchUser", { username })
       .then((response) => {
