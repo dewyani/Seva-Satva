@@ -101,7 +101,7 @@ export default function Login() {
                                 value={formData.role}>
 
                                 <option value="Student">Student</option>
-                                <option value="Instructor">Instructor</option>
+                                {/* <option value="Instructor">Instructor</option> */}
                                 <option value="Admin">Admin</option>
                             </select>
                         </div>

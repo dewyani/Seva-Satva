@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function AllCoursesStudent(props) {
+
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([])
 
   useEffect((() => {
@@ -17,6 +19,11 @@ export default function AllCoursesStudent(props) {
         setCourses(response.data.courseDocs)
       })
   }), [])
+
+  function handleClick(id)
+  {
+     navigate(`/studentsenrolled/${id}`)
+  }
 
   // const { courses } = props;
 
@@ -27,7 +34,7 @@ export default function AllCoursesStudent(props) {
         <main className="allcourse--main">
           {
             courses.map((course) => (
-              <div className="allcourse--div" key={course._id}>
+              <div className="allcourse--div" key={course._id} onClick= {()=>handleClick(course._id)}>
                 <img src={'http://localhost:4000/' + course.Imagefile || cookingImg} alt="course cover image" />
                 <div className="allcourse--innerdiv">
                   <hr />
@@ -35,7 +42,7 @@ export default function AllCoursesStudent(props) {
                   <p>Intake capacity: {course.intake_Capacity}</p> 
                   <p>Current Enrolled : {course.current_Enrolled_Count}</p> 
                   <p>Prof. {course.prof_Incharge}</p>
-                  <button><Link to={`/studentsenrolled/${course._id}`}>Course Details</Link></button>
+                  {/* <button><Link to={`/studentsenrolled/${course._id}`}>Course Details</Link></button> */}
                 </div>
               </div>
             ))}

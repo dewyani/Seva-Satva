@@ -25,6 +25,7 @@ const Recommender = () => {
 
 
   const printBook = (book) => {
+  
     return (
       book.hasOwnProperty("isbn") ? (
         <div>
@@ -33,9 +34,8 @@ const Recommender = () => {
           <p>Author Name : {book.author_name}</p>
           <img src={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`} />
         </div>
-      ) : (
-        <div>No ISBN available</div>
-      )
+      ) : null
+
     )
   };
 
