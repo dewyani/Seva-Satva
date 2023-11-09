@@ -8,7 +8,7 @@ const uploadImageMiddleware = multer({ dest: './uploads' });
 const {
     addCourse,
     setAllPref,
-    allotCourse ,  
+    allotCourse ,      
     allAvilableCourse , 
     allCourse , 
     selectedCourse , 

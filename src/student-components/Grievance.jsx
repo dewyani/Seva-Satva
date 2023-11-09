@@ -2,9 +2,11 @@ import React from "react";
 import NavBar from "./NavBar";
 import { nanoid } from "nanoid";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 export default function Grievance() {
   const [grievanceData, setGrievanceData] = React.useState([]);
+  const nav = useNavigate()
 
   async function handleSubmit(event) {
       event.preventDefault();
@@ -13,6 +15,7 @@ export default function Grievance() {
       await axios.post("http://localhost:4000/grievance/addGrievance" , {query} , {withCredentials : true})
       .then((response) => {
         alert("Grievance form submitted successfully")
+        nav("/dashboard")
       })
       .catch((error) => {
         alert("Error While Submitting Grievance")
